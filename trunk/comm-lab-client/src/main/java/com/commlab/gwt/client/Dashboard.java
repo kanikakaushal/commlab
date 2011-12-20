@@ -63,28 +63,17 @@ public class Dashboard implements EntryPoint, HistoryListener {
         topBar.addSpacer(6);
         topBar.addSpacer(6);
         LabMenu labMenu= new LabMenu();
-        IMenuButton activityMenuButton = new IMenuButton("Activity", labMenu.createMenu());
-        IMenuButton editMenuButton = new IMenuButton("Edit", labMenu.createMenu());
-        IMenuButton runMenuButton = new IMenuButton("Run", labMenu.createMenu());
-        IMenuButton helpMenuButton = new IMenuButton("Help", labMenu.createMenu());
-
-     
+      
         Label title = new Label("Communication Lab");
         title.setStyleName("sgwtTitle");
         title.setWidth(300);
         topBar.addMember(title);
+        
+        //topBar.addMember(labMenu.createMenu());
         topBar.addFill();
-
         topBar.addSpacer(6);
-        topBar.addChild(activityMenuButton);
-        topBar.addChild(editMenuButton);
-        topBar.addChild(runMenuButton);
-        topBar.addChild(helpMenuButton);
-          
-  
-
         main.addMember(topBar);
-  
+        main.addMember(labMenu.createMenu());
         main.setWidth100();
         main.setHeight100();
         main.setStyleName("tabSetContainer");
@@ -132,8 +121,8 @@ public class Dashboard implements EntryPoint, HistoryListener {
         selectItem.setHeight(21);
         selectItem.setWidth(130);
         LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();
-        valueMap.put("Enterprise Blue", "Blue");
-        valueMap.put("Enterprise Gray", "Gray");
+        valueMap.put("Enterprise Blue", "Enterprise Blue");
+        valueMap.put("Enterprise Gray", "Enterprise Gray");
         valueMap.put("Graphite", "Graphite");
         valueMap.put("Simplicity", "Simplicity");
 
@@ -143,7 +132,7 @@ public class Dashboard implements EntryPoint, HistoryListener {
         final String skinCookieName = "comm_lab_skin";
         String currentSkin = Cookies.getCookie(skinCookieName);
         if (currentSkin == null) {
-            currentSkin = "Graphite";
+            currentSkin = "Enterprise Blue";
         }
         selectItem.setDefaultValue(currentSkin);
         selectItem.setShowTitle(false);

@@ -81,7 +81,7 @@
         <!-- Plugin configuration. There are many available options, see gwt-maven-plugin 
           documentation at codehaus.org -->
         <configuration>
-          <runTarget>client.html</runTarget>
+          <runTarget>commlab.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
           <i18nMessagesBundle>com.commlab.gwt.client.Messages</i18nMessagesBundle>
         </configuration>

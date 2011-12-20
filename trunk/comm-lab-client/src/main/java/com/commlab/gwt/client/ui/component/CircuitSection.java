@@ -30,45 +30,41 @@ public class CircuitSection {
 	        sectionStack.setWidth(300);  
 	        sectionStack.setHeight(350);  
 	  
-	        SectionStackSection section1 = new SectionStackSection("Blue Pawn");  
+	        SectionStackSection section1 = new SectionStackSection("Function Generator");  
 	        section1.setExpanded(true);  
-	        section1.addItem(new Img("pieces/48/pawn_blue.png", 48, 48));  
+	        //section1.addItem(new Img("pieces/48/pawn_blue.png", 48, 48));  
 	        sectionStack.addSection(section1);  
 	  
-	        SectionStackSection section2 = new SectionStackSection("HTML Flow");  
+	        SectionStackSection section2 = new SectionStackSection("De-Modulator");  
 	        section2.setExpanded(true);  
 	        section2.setCanCollapse(true);  
-	        section2.addItem(htmlFlow);  
+	        //section2.addItem(htmlFlow);  
 	        sectionStack.addSection(section2);  
 	  
-	        SectionStackSection section3 = new SectionStackSection("Green Pawn");  
+	        SectionStackSection section3 = new SectionStackSection("Detector");  
 	        section3.setExpanded(true);  
 	        section3.setCanCollapse(false);  
-	        section3.addItem(new Img("pieces/48/pawn_green.png", 48, 48));  
+	        //section3.addItem(new Img("pieces/48/pawn_green.png", 48, 48));  
 	        sectionStack.addSection(section3);  
 	  
-	        SectionStackSection section4 = new SectionStackSection("Yellow Piece");  
+	        SectionStackSection section4 = new SectionStackSection("Amplifier/Mixer");  
 	        section4.setExpanded(false);  
-	        section4.addItem(new Img("pieces/48/piece_yellow.png", 48, 48));  
+	        //s/ection4.addItem(new Img("pieces/48/piece_yellow.png", 48, 48));  
 	        sectionStack.addSection(section4);  
 	  
-	        IButton expandButton = new IButton("Expand Blue");  
-	        expandButton.setWidth(150);  
-	        expandButton.addClickHandler(new ClickHandler() {  
-	            public void onClick(ClickEvent event) {  
-	                sectionStack.expandSection(0);  
-	            }  
-	        });  
-	  
-	        IButton collapseButton = new IButton("Collapse Blue");  
-	        collapseButton.setWidth(150);  
-	        collapseButton.addClickHandler(new ClickHandler() {  
-	            public void onClick(ClickEvent event) {  
-	                sectionStack.collapseSection(0);  
-	            }  
-	        });  
+	        SectionStackSection section5 = new SectionStackSection("Amplitude Limiter");  
+	        section4.setExpanded(false);  
+	        //s/ection4.addItem(new Img("pieces/48/piece_yellow.png", 48, 48));  
+	        sectionStack.addSection(section5);
+	        
+	        SectionStackSection section6 = new SectionStackSection("Low Pass Filter");  
+	        section4.setExpanded(false);  
+	        //s/ection4.addItem(new Img("pieces/48/piece_yellow.png", 48, 48));  
+	        sectionStack.addSection(section6);  
+	        
 	  
 	        HLayout layout = new HLayout();   
+	        sectionStack.setHeight100();
 	        layout.addMember(sectionStack);  
 	        layout.setHeight100();
 	        return layout;
