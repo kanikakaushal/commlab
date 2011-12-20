@@ -9,6 +9,13 @@
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Communication Lab Modular Application - Client (GWT)</name>
+	<repositories>
+		 <repository>
+			 <id>smartclient</id>
+			 <name>smartclient.com</name>
+			 <url>http://www.smartclient.com/maven2</url>
+		 </repository>
+	 </repositories>
 
   <properties>
     <!-- Convenience property to set the GWT version -->
@@ -38,6 +45,16 @@
       <version>4.7</version>
       <scope>test</scope>
     </dependency>
+	<dependency>
+	   <groupId>com.smartgwt</groupId>
+	   <artifactId>smartgwt</artifactId>
+       <version>2.4</version>
+    </dependency>
+	<dependency>
+	   <groupId>com.smartgwt</groupId>
+	   <artifactId>smartgwt-skins</artifactId>
+	   <version>2.4</version>
+	</dependency>
   </dependencies>
 
   <build>
@@ -50,7 +67,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.1.0-1</version>
+        <version>2.4.0</version>
         <executions>
           <execution>
             <goals>
@@ -66,7 +83,7 @@
         <configuration>
           <runTarget>client.html</runTarget>
           <hostedWebapp>${webappDirectory}</hostedWebapp>
-          <i18nMessagesBundle>com.commlab.client.Messages</i18nMessagesBundle>
+          <i18nMessagesBundle>com.commlab.gwt.client.Messages</i18nMessagesBundle>
         </configuration>
       </plugin>
 
