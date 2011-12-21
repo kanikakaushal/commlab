@@ -1,7 +1,12 @@
-.sgwtTitle {
+.commlabHeaderTitle {
     font-family:Arial,Verdana,tahoma,serif;
     color:#4AA02C;
     font-size:26px;
+}
+
+.commlabFoolterTitle {
+    font-family:Arial,Verdana,tahoma,serif;
+    font-size:11px;
 }
 
 .exampleSeparator {
