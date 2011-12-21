@@ -23,7 +23,8 @@
   <!-- Other module inherits                                      -->
 
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='com.commlab.gwt.client.Dashboard'/>
+  <!-- entry-point class='com.commlab.gwt.client.Dashboard'/-->
+  <entry-point class='com.commlab.gwt.client.AdminDashboard'/>
 
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
