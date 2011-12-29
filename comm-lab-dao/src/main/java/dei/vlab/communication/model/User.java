@@ -31,7 +31,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 @Entity
 @Table(name = "user")
-
 @XmlRootElement
 public class User extends BaseObject implements Serializable {
     private static final long serialVersionUID = 3832626162173359411L;

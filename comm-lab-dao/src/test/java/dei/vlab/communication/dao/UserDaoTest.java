@@ -25,7 +25,7 @@ public class UserDaoTest extends BaseDaoTestCase {
 
     @Test
     public void testGetUser() throws Exception {
-        User user = dao.get(1L);
+        User user = dao.get(1l);
 
         assertNotNull(user);
         assertEquals(1, user.getRoles().size());

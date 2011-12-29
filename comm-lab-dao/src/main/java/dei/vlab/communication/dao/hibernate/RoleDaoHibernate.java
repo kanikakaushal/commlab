@@ -1,11 +1,7 @@
 package dei.vlab.communication.dao.hibernate;
-
-
 import dei.vlab.communication.dao.RoleDao;
 import dei.vlab.communication.model.Role;
-
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 
