@@ -8,5 +8,11 @@
     <session-factory>
         <mapping class="dei.vlab.communication.model.User"/>
         <mapping class="dei.vlab.communication.model.Role"/>
+		<mapping class="dei.vlab.communication.model.Message"/>
+		<mapping class="dei.vlab.communication.model.UserDetail"/>
+		<mapping class="dei.vlab.communication.model.CircuitUser"/>
+		<mapping class="dei.vlab.communication.model.LoginLog"/>
+		
+		
     </session-factory>
 </hibernate-configuration>
