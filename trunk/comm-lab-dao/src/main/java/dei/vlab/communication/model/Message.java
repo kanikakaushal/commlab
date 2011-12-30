@@ -23,12 +23,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Table(name="message")
 public class Message extends BaseObject  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-
 	/*
 	 * Default constructor - creat a new instance with no value set.
 	 */

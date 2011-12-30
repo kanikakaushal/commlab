@@ -17,6 +17,11 @@ public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long
 		return null;
 	}
 
+	
+
+
+
+	
 
 
 }

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -14,11 +13,11 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Table(name="user_detail")
 public class UserDetail extends BaseObject {
 	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@OneToMany
 	private User uid;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
