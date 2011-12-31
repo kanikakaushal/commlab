@@ -3,14 +3,14 @@ package dei.vlab.communication.dao;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import dei.vlab.communication.model.CircuitUser;
+import dei.vlab.communication.model.Circuit;
 
-public class CircuitUserDaoTest extends BaseDaoTestCase{
+public class CircuitDaoTest extends BaseDaoTestCase{
 	@Autowired
-	private CircuitUserDao cuDao;
+	private CircuitDao cuDao;
 	 @Test
 	    public void testGetCircuitType() throws Exception {
-	        CircuitUser cUser = cuDao.get(1L);
+	        Circuit cUser = cuDao.get(1L);
 	        assertNotNull(cUser);
 	        
 	    }
