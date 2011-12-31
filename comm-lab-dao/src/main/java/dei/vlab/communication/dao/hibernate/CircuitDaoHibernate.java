@@ -4,16 +4,16 @@ import org.springframework.stereotype.Repository;
 
 import antlr.collections.List;
 
-import dei.vlab.communication.dao.CircuitUserDao;
-import dei.vlab.communication.model.CircuitUser;
+import dei.vlab.communication.dao.CircuitDao;
+import dei.vlab.communication.model.Circuit;
 
 
 @Repository("CircuitUserDao")
 
-public class CircuitUserDaoHibernate extends GenericDaoHibernate<CircuitUser, Long> implements CircuitUserDao   {
+public class CircuitDaoHibernate extends GenericDaoHibernate<Circuit, Long> implements CircuitDao   {
 	
-	public CircuitUserDaoHibernate(){
-		super(CircuitUser.class);
+	public CircuitDaoHibernate(){
+		super(Circuit.class);
 	}
 
 	public List getCircuitType(Long circuitId) {
