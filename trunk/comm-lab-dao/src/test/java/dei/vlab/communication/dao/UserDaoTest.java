@@ -1,6 +1,5 @@
 package dei.vlab.communication.dao;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -28,7 +27,6 @@ public class UserDaoTest extends BaseDaoTestCase {
         User user = dao.get(1l);
 
         assertNotNull(user);
-        assertEquals(1, user.getRoles().size());
     }
 
     @Test
@@ -39,5 +37,4 @@ public class UserDaoTest extends BaseDaoTestCase {
         log.debug("password: " + password);
     }
 
-   
 }

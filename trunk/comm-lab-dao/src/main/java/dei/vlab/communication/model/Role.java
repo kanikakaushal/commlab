@@ -1,7 +1,5 @@
 package dei.vlab.communication.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,22 +15,15 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * This class is used to represent available roles in the database.
- *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *         Version by Dan Kibler dan@getrolling.com
- *         Extended to implement Acegi GrantedAuthority interface
- *         by David Carter david@carter.net
+ * 
+ * @author
  */
 @Entity
 @Table(name = "role")
-@NamedQueries({
-        @NamedQuery(
-                name = "findRoleByName",
-                query = "select r from Role r where r.name = :name "
-        )
-})
-public class Role extends BaseObject implements Serializable {
+@NamedQueries( {@NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
+public class Role extends BaseObject {
     private static final long serialVersionUID = 3690197650654049848L;
+
     private Long id;
     private String name;
     private String description;
@@ -45,8 +36,9 @@ public class Role extends BaseObject implements Serializable {
 
     /**
      * Create a new instance and set the name.
-     *
-     * @param name name of the role.
+     * 
+     * @param name
+     *            name of the role.
      */
     public Role(final String name) {
         this.name = name;
@@ -58,16 +50,12 @@ public class Role extends BaseObject implements Serializable {
         return id;
     }
 
-    /**
-     * @return the name property (getAuthority required by Acegi's GrantedAuthority interface)
-     * @see org.springframework.security.core.GrantedAuthority#getAuthority()
-     */
     @Transient
     public String getAuthority() {
         return getName();
     }
 
-    @Column(length = 20)
+    @Column(nullable = false, length = 20, unique = true)
     public String getName() {
         return this.name;
     }
@@ -117,9 +105,7 @@ public class Role extends BaseObject implements Serializable {
      * {@inheritDoc}
      */
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
-                .append(this.name)
-                .toString();
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).toString();
     }
 
     /**
