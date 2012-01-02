@@ -21,11 +21,11 @@
  * ${see_to_target}
  */</template><template autoinsert="false" context="newtype_context" deleted="false" description="Newly created files" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.newtype" name="newtype">/*
  * $$Id$$
- * Copyright (c) Dayalbagh Educational Institute.
+ * Copyright (c) Dayalbagh Educational Institute
  * All Rights Reserved.
  * This software and documentation is the confidential and proprietary 
- * information of Dayalbagh Educational Institute ("Confidential Information").
- * 
+ * information of Dayalbagh Educational Institute.
+ *
  */
 
 ${package_declaration}
