@@ -13,10 +13,10 @@
   <module name="TreeWalker">
     <module name="JavadocMethod">
       <property name="scope" value="public"/>
+      <property name="allowMissingParamTags" value="true"/>
+      <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="logLoadErrors" value="true"/>
       <property name="suppressLoadErrors" value="true"/>
-      <property name="allowMissingParamTags" value="true"/>
-		<property name="allowMissingPropertyJavadoc" value="true" />
     </module>
     <module name="JavadocType"/>
     <module name="JavadocVariable">
@@ -54,8 +54,8 @@
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="LineLength">
-		<property name="max" value="120"/>
-		<property name="ignorePattern" value="^import"/>
+      <property name="ignorePattern" value="^import"/>
+      <property name="max" value="120"/>
     </module>
     <module name="EmptyForIteratorPad"/>
     <module name="MethodParamPad"/>
@@ -86,9 +86,6 @@
     <module name="LeftCurly"/>
     <module name="NeedBraces"/>
     <module name="RightCurly"/>
-	<!--
-    <module name="AvoidInlineConditionals"/>
-	-->
     <module name="DoubleCheckedLocking"/>
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
@@ -125,8 +122,8 @@
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="VisibilityModifier">
-		<property name="protectedAllowed" value="true"/>
-	</module>
+      <property name="protectedAllowed" value="true"/>
+    </module>
     <module name="ArrayTypeStyle"/>
     <module name="FinalParameters">
       <property name="severity" value="ignore"/>
@@ -144,7 +141,6 @@
     <property name="severity" value="ignore"/>
     <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
   </module>
-  <module name="NewlineAtEndOfFile"/>
   <module name="Translation"/>
   <module name="FileLength">
     <property name="max" value="1500"/>

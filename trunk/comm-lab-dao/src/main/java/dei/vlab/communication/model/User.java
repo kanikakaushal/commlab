@@ -1,3 +1,12 @@
+/*
+ * $Id$
+ * Copyright (c) Dayalbagh Educational Institute
+ * All Rights Reserved.
+ * This software and documentation is the confidential and proprietary 
+ * information of Dayalbagh Educational Institute.
+ *
+ */
+
 package dei.vlab.communication.model;
 
 import javax.persistence.Column;
@@ -16,7 +25,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
 /**
  * This class represents the basic "user" object that allows for authentication and user management.
  * 
- * @author
+ * @version $Revision$ $Date$
+ * @author kaushkan
  */
 @Entity
 @Table(name = "user")
@@ -129,4 +139,5 @@ public class User extends BaseObject {
         }
         return sb.toString();
     }
+
 }

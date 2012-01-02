@@ -1,3 +1,12 @@
+/*
+ * $Id$
+ * Copyright (c) Dayalbagh Educational Institute
+ * All Rights Reserved.
+ * This software and documentation is the confidential and proprietary 
+ * information of Dayalbagh Educational Institute.
+ *
+ */
+
 package dei.vlab.communication.model;
 
 import javax.persistence.Column;
@@ -11,9 +20,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
+ * This class represents a circuit.
  * 
- * @author Default
- * 
+ * @version $Revision$ $Date$
+ * @author kaushkan
  */
 @Entity
 @Table(name = "circuit")
@@ -52,11 +62,17 @@ public class Circuit extends BaseObject {
         this.type = type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.circuitId).toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -72,6 +88,9 @@ public class Circuit extends BaseObject {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return (circuitId != null ? circuitId.hashCode() : 0);

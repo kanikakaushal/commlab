@@ -1,3 +1,12 @@
+/*
+ * $Id$
+ * Copyright (c) Dayalbagh Educational Institute
+ * All Rights Reserved.
+ * This software and documentation is the confidential and proprietary 
+ * information of Dayalbagh Educational Institute.
+ *
+ */
+
 package dei.vlab.communication.model;
 
 import java.sql.Date;
@@ -14,8 +23,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * @author server
+ * This class is used to represent a message for the user.
  * 
+ * @version $Revision$ $Date$
+ * @author kaushkan
  */
 @Entity
 @Table(name = "message")
@@ -81,6 +92,9 @@ public class Message extends BaseObject {
         this.user = user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("Message", this.message);
@@ -90,6 +104,9 @@ public class Message extends BaseObject {
         return sb.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,6 +119,9 @@ public class Message extends BaseObject {
         return messageId != null ? messageId == message.getMessageId() : message.getMessageId() == null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return (messageId != null ? messageId.hashCode() : 0);

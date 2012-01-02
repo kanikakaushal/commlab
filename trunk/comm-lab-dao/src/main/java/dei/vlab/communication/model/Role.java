@@ -1,3 +1,12 @@
+/*
+ * $Id$
+ * Copyright (c) Dayalbagh Educational Institute
+ * All Rights Reserved.
+ * This software and documentation is the confidential and proprietary 
+ * information of Dayalbagh Educational Institute.
+ *
+ */
+
 package dei.vlab.communication.model;
 
 import javax.persistence.Column;
@@ -14,9 +23,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * This class is used to represent available roles in the database.
+ * This class is used to represent available roles for a user.
  * 
- * @author
+ * @version $Revision$ $Date$
+ * @author kaushkan
  */
 @Entity
 @Table(name = "role")
@@ -114,4 +124,5 @@ public class Role extends BaseObject {
     public int compareTo(Object o) {
         return (equals(o) ? 0 : -1);
     }
+
 }
