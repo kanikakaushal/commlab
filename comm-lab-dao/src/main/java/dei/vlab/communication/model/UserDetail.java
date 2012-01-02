@@ -1,3 +1,12 @@
+/*
+ * $Id$
+ * Copyright (c) Dayalbagh Educational Institute
+ * All Rights Reserved.
+ * This software and documentation is the confidential and proprietary 
+ * information of Dayalbagh Educational Institute.
+ *
+ */
+
 package dei.vlab.communication.model;
 
 import javax.persistence.Entity;
@@ -12,9 +21,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
+ * This class represents the user details.
  * 
- * @author Default
- * 
+ * @version $Revision$ $Date$
+ * @author kaushkan
  */
 @Entity
 @Table(name = "user_detail")
@@ -134,6 +144,9 @@ public class UserDetail extends BaseObject {
         this.collegeName = collegeName;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.firsName).append(this.lastName)
@@ -141,6 +154,9 @@ public class UserDetail extends BaseObject {
                         this.emailAddress).toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -156,6 +172,9 @@ public class UserDetail extends BaseObject {
                 .getUser().getUsername() == null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return (user.getUsername() != null ? user.getUsername().hashCode() : 0);
