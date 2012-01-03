@@ -9,12 +9,11 @@
 
 package dei.vlab.communication.model;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -28,26 +27,23 @@ import javax.persistence.Table;
 public class CircuitPrivilege extends BaseObject {
     private static final long serialVersionUID = 6486518925984698462L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long privilegeId;
+    @EmbeddedId
+    private CircuitPrivilegePK id;
+
+    @MapsId("circuitPK")
     @ManyToOne
     @JoinColumn(name = "circuit_id")
     private Circuit circuit;
+
+    @MapsId("rolePK")
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @MapsId("operationPK")
     @ManyToOne
     @JoinColumn(name = "operation_id")
     private CircuitOperation operation;
-
-    public Long getPrivilegeId() {
-        return privilegeId;
-    }
-
-    public void setPrivilegeId(Long privilegeId) {
-        this.privilegeId = privilegeId;
-    }
 
     public Circuit getCircuit() {
         return circuit;
@@ -71,6 +67,14 @@ public class CircuitPrivilege extends BaseObject {
 
     public void setOperation(CircuitOperation operation) {
         this.operation = operation;
+    }
+
+    public void setId(CircuitPrivilegePK id) {
+        this.id = id;
+    }
+
+    public CircuitPrivilegePK getId() {
+        return id;
     }
 
     /*

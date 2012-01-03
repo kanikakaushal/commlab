@@ -9,12 +9,11 @@
 
 package dei.vlab.communication.model;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -28,26 +27,23 @@ import javax.persistence.Table;
 public class UserExperiment extends BaseObject {
     private static final long serialVersionUID = -385191857803046362L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userExperimentId;
+    @EmbeddedId
+    private UserExperimentPK id;
+
+    @MapsId("userPK")
     @ManyToOne
     @JoinColumn(name = "experiment_id")
     private Experiment experiment;
+
+    @MapsId("experimentPK")
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @MapsId("circuitPK")
     @ManyToOne
     @JoinColumn(name = "circuit_id")
     private Circuit circuit;
-
-    public Long getUserExperimentId() {
-        return userExperimentId;
-    }
-
-    public void setUserExperimentId(Long userExperimentId) {
-        this.userExperimentId = userExperimentId;
-    }
 
     public Experiment getExperiment() {
         return experiment;
@@ -71,6 +67,14 @@ public class UserExperiment extends BaseObject {
 
     public void setCircuit(Circuit circuit) {
         this.circuit = circuit;
+    }
+
+    public void setId(UserExperimentPK id) {
+        this.id = id;
+    }
+
+    public UserExperimentPK getId() {
+        return id;
     }
 
     /*
