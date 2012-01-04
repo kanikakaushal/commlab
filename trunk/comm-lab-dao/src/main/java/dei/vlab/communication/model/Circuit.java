@@ -1,12 +1,6 @@
-/*
- * $Id$
- * Copyright (c) Dayalbagh Educational Institute
- * All Rights Reserved.
- * This software and documentation is the confidential and proprietary 
- * information of Dayalbagh Educational Institute.
- *
+/**
+ * 
  */
-
 package dei.vlab.communication.model;
 
 import javax.persistence.Column;
@@ -14,86 +8,97 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
 /**
- * This class represents a circuit.
- * 
- * @version $Revision$ $Date$
- * @author kaushkan
+ * @author server
+ *
  */
 @Entity
-@Table(name = "circuit")
+@Table(name="circuit")
 public class Circuit extends BaseObject {
-    private static final long serialVersionUID = 6858812338686629140L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long circuitId;
-    @Column(length = 50, nullable = false, unique = true)
-    private String name;
-    @Column(length = 30)
-    private String type;
-
-    public Long getCircuitId() {
-        return circuitId;
-    }
-
-    public void setCircuitId(Long circuitId) {
-        this.circuitId = circuitId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.circuitId).toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof UserDetail)) {
-            return false;
-        }
-
-        final Circuit circuitUser = (Circuit) o;
-
-        return circuitId != null ? circuitId.equals(circuitUser.getCircuitId()) : circuitUser.getCircuitId() == null;
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return (circuitId != null ? circuitId.hashCode() : 0);
-    }
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="circuit_id")
+	private Long circuitId;
+	@Column(name="name",nullable=false,unique=true,length=200)
+	private String circuitName;
+	@Column(name="type",nullable=false,length=100)
+	private String circuitType;
+	@Column(name="node_coordinates")
+	@Lob
+	private String circuitNodeCoordinate;
+	@Column(name="image_file",nullable=false)
+	private String circuitImageFile;
+	@Column(name="config_properties",nullable=false)
+	private String circuitConfigProperties;
+	@Column(name="remark")
+	private String circuitRemark;
+	/**
+	 * 
+	 */
+	public Circuit() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Long getCircuitId() {
+		return circuitId;
+	}
+	public void setCircuitId(Long circuitId) {
+		this.circuitId = circuitId;
+	}
+	public String getCircuitName() {
+		return circuitName;
+	}
+	public void setCircuitName(String circuitName) {
+		this.circuitName = circuitName;
+	}
+	public String getCircuitType() {
+		return circuitType;
+	}
+	public void setCircuitType(String circuitType) {
+		this.circuitType = circuitType;
+	}
+	public String getCircuitNodeCoordinate() {
+		return circuitNodeCoordinate;
+	}
+	public void setCircuitNodeCoordinate(String circuitNodeCoordinate) {
+		this.circuitNodeCoordinate = circuitNodeCoordinate;
+	}
+	public String getCircuitImageFile() {
+		return circuitImageFile;
+	}
+	public void setCircuitImageFile(String circuitImageFile) {
+		this.circuitImageFile = circuitImageFile;
+	}
+	public String getCircuitConfigProperties() {
+		return circuitConfigProperties;
+	}
+	public void setCircuitConfigProperties(String circuitConfigProperties) {
+		this.circuitConfigProperties = circuitConfigProperties;
+	}
+	public String getCircuitRemark() {
+		return circuitRemark;
+	}
+	public void setCircuitRemark(String circuitRemark) {
+		this.circuitRemark = circuitRemark;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
