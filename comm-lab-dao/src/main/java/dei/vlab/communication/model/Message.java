@@ -1,16 +1,9 @@
-/*
- * $Id$
- * Copyright (c) Dayalbagh Educational Institute
- * All Rights Reserved.
- * This software and documentation is the confidential and proprietary 
- * information of Dayalbagh Educational Institute.
- *
+/**
+ * 
  */
-
 package dei.vlab.communication.model;
 
-import java.sql.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,108 +16,118 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * This class is used to represent a message for the user.
- * 
- * @version $Revision$ $Date$
- * @author kaushkan
+ * @author server
+ *
  */
 @Entity
-@Table(name = "message")
+@Table(name="message")
 public class Message extends BaseObject {
-    private static final long serialVersionUID = -4212655785450228879L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long messageId;
-    private String subject;
-    private String message;
-    private String status;
-    private Date date;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	@Column(nullable=false)
+	private String too;
+	private String ccc;
+	@Column(length=100)
+	private String subject;
+	@Column(length=100,nullable=false)
+	private String status;
+	@ManyToOne
+	@JoinColumn(name="userDetail_id")
+	private UserDetail userdetail;
+	
+	/**
+	 * 
+	 */
+	public Message() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public Long getMessageId() {
-        return messageId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setMessageId(Long messageId) {
-        this.messageId = messageId;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getSubject() {
-        return subject;
-    }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+	public UserDetail getUserdetail() {
+		return userdetail;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public void setUserdetail(UserDetail userdetail) {
+		this.userdetail = userdetail;
+	}
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	
+	public String getToo() {
+		return too;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setToo(String too) {
+		this.too = too;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getCcc() {
+		return ccc;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public void setCcc(String ccc) {
+		this.ccc = ccc;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public String getSubject() {
+		return subject;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("Message", this.message);
-        if (message != null) {
-            sb.append("Your Message is");
-        }
-        return sb.toString();
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Message)) {
-            return false;
-        }
-        final Message message = (Message) o;
-        return messageId != null ? messageId == message.getMessageId() : message.getMessageId() == null;
-    }
+	@Override
+	public String toString() {
+		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+         .append(this.too)
+         .append(this.status)
+         
+         .toString();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return (messageId != null ? messageId.hashCode() : 0);
-    }
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		 if (this == o) {
+	            return true;
+	        }
+	        if (!(o instanceof Role)) {
+	            return false;
+	        }
+
+	        final Message mess = (Message) o;
+
+	        return !(too != null ? !too.equals(mess.too) : mess.too != null);
+
+
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return (too!=null ? too.hashCode() : 0);
+	}
 
 }

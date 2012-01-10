@@ -12,20 +12,18 @@ import dei.vlab.communication.model.User;
 public class UserDaoTest extends BaseDaoTestCase {
     @Autowired
     private UserDao dao;
-    @Autowired
-    private RoleDao rdao;
+   
 
     @Test
     @ExpectedException(DataAccessException.class)
     public void testGetUserInvalid() throws Exception {
         // should throw DataAccessException
-        dao.get(1000L);
+        dao.get(100L);
     }
 
     @Test
     public void testGetUser() throws Exception {
-        User user = dao.get(1l);
-
+        User user = dao.get(1L);
         assertNotNull(user);
     }
 

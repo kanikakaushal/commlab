@@ -1,12 +1,6 @@
-/*
- * $Id$
- * Copyright (c) Dayalbagh Educational Institute
- * All Rights Reserved.
- * This software and documentation is the confidential and proprietary 
- * information of Dayalbagh Educational Institute.
- *
+/**
+ * 
  */
-
 package dei.vlab.communication.model;
 
 import javax.persistence.Column;
@@ -14,84 +8,82 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * This class is used to represent available roles for a user.
- * 
- * @version $Revision$ $Date$
- * @author kaushkan
+ * @author server
+ *
  */
 @Entity
-@Table(name = "role")
-@NamedQueries( {@NamedQuery(name = "findRoleByName", query = "select r from Role r where r.name = :name ") })
-public class Role extends BaseObject {
-    private static final long serialVersionUID = 3690197650654049848L;
+@Table(name="role")
+public class Role  extends BaseObject{
 
-    private Long id;
-    private String name;
-    private String description;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	@Column(length=64,nullable= false)
+	private String name;
+	@Column(length=100,nullable=false)
+	private String type;
+	@Column(nullable=false, length=200)
+	private String description;
+	
+	/**
+	 * 
+	 */
+	public Role() {
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * Default constructor - creates a new instance with no values set.
-     */
-    public Role() {
-    }
+	public Long getId() {
+		return id;
+	}
 
-    /**
-     * Create a new instance and set the name.
-     * 
-     * @param name
-     *            name of the role.
-     */
-    public Role(final String name) {
-        this.name = name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    @Transient
-    public String getAuthority() {
-        return getName();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Column(nullable = false, length = 20, unique = true)
-    public String getName() {
-        return this.name;
-    }
+	public String getType() {
+		return type;
+	}
 
-    @Column(length = 64)
-    public String getDescription() {
-        return this.description;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@Override
+	public String toString() {
+		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+         .append(this.name)
+         .toString();
 
-    /**
-     * {@inheritDoc}
-     */
-    public boolean equals(Object o) {
-        if (this == o) {
+	}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
             return true;
         }
         if (!(o instanceof Role)) {
@@ -102,27 +94,19 @@ public class Role extends BaseObject {
 
         return !(name != null ? !name.equals(role.name) : role.name != null);
 
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int hashCode() {
-        return (name != null ? name.hashCode() : 0);
-    }
+	}
+	@Override
+	public int hashCode() {
+		  return (name != null ? name.hashCode() : 0);
 
-    /**
-     * {@inheritDoc}
-     */
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).toString();
-    }
-
-    /**
+	}
+	/**
      * {@inheritDoc}
      */
     public int compareTo(Object o) {
         return (equals(o) ? 0 : -1);
     }
+
 
 }

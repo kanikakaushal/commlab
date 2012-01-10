@@ -4,9 +4,11 @@
 package dei.vlab.communication.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -17,26 +19,18 @@ import javax.persistence.Table;
 @Table(name="user_experment")
 public class UserExperment extends BaseObject {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	//private Long userExpermentId;
-	@MapsId("userExpermentUserIdPk")
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-
-	@MapsId("userExpermentCircuitIdPk")
 	@ManyToOne
 	@JoinColumn(name="circuit_id")
 	private Circuit circuit;
-	
-	@MapsId("userExpermentExpermentIdPk")
 	@ManyToOne
 	@JoinColumn(name="experiment_id")
-	private Experiments experiment;
+	private Experiment experiment;
 	
 	
 	/**
@@ -45,7 +39,18 @@ public class UserExperment extends BaseObject {
 	public UserExperment() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	public User getUser() {
 		return user;
 	}
@@ -66,14 +71,15 @@ public class UserExperment extends BaseObject {
 	}
 
 
-	public Experiments getExperiment() {
+	public Experiment getExperiment() {
 		return experiment;
 	}
 
 
-	public void setExperiment(Experiments experiment) {
+	public void setExperiment(Experiment experiment) {
 		this.experiment = experiment;
 	}
+
 
 	@Override
 	public String toString() {
@@ -81,18 +87,18 @@ public class UserExperment extends BaseObject {
 		return null;
 	}
 
+
 	@Override
 	public boolean equals(Object o) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 
 }

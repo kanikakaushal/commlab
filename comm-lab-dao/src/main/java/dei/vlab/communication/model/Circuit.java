@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * @author server
@@ -19,86 +21,100 @@ import javax.persistence.Table;
 @Table(name="circuit")
 public class Circuit extends BaseObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="circuit_id")
-	private Long circuitId;
-	@Column(name="name",nullable=false,unique=true,length=200)
-	private String circuitName;
-	@Column(name="type",nullable=false,length=100)
-	private String circuitType;
-	@Column(name="node_coordinates")
-	@Lob
-	private String circuitNodeCoordinate;
-	@Column(name="image_file",nullable=false)
-	private String circuitImageFile;
-	@Column(name="config_properties",nullable=false)
-	private String circuitConfigProperties;
-	@Column(name="remark")
-	private String circuitRemark;
+	private Long id;
+	@Column(length=100,nullable=false,unique=true)
+	private String name;
+	@Column(length=100)
+	private String type;
+	@Column(name="node_coordinates",nullable=false)
+	private String noceCordinate;
+	@Column(nullable=false)
+	private String imageFile;
+	@Column(nullable=false)
+	private String configProperties;
+	private String remark;
 	/**
 	 * 
 	 */
 	public Circuit() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Long getCircuitId() {
-		return circuitId;
+	public Long getId() {
+		return id;
 	}
-	public void setCircuitId(Long circuitId) {
-		this.circuitId = circuitId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public String getCircuitName() {
-		return circuitName;
+	public String getName() {
+		return name;
 	}
-	public void setCircuitName(String circuitName) {
-		this.circuitName = circuitName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getCircuitType() {
-		return circuitType;
+	public String getType() {
+		return type;
 	}
-	public void setCircuitType(String circuitType) {
-		this.circuitType = circuitType;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getCircuitNodeCoordinate() {
-		return circuitNodeCoordinate;
+	public String getNoceCordinate() {
+		return noceCordinate;
 	}
-	public void setCircuitNodeCoordinate(String circuitNodeCoordinate) {
-		this.circuitNodeCoordinate = circuitNodeCoordinate;
+	public void setNoceCordinate(String noceCordinate) {
+		this.noceCordinate = noceCordinate;
 	}
-	public String getCircuitImageFile() {
-		return circuitImageFile;
+	public String getImageFile() {
+		return imageFile;
 	}
-	public void setCircuitImageFile(String circuitImageFile) {
-		this.circuitImageFile = circuitImageFile;
+	public void setImageFile(String imageFile) {
+		this.imageFile = imageFile;
 	}
-	public String getCircuitConfigProperties() {
-		return circuitConfigProperties;
+	public String getConfigProperties() {
+		return configProperties;
 	}
-	public void setCircuitConfigProperties(String circuitConfigProperties) {
-		this.circuitConfigProperties = circuitConfigProperties;
+	public void setConfigProperties(String configProperties) {
+		this.configProperties = configProperties;
 	}
-	public String getCircuitRemark() {
-		return circuitRemark;
+	public String getRemark() {
+		return remark;
 	}
-	public void setCircuitRemark(String circuitRemark) {
-		this.circuitRemark = circuitRemark;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+         .append(this.name)
+          .append(this.type)
+           .append(this.id)
+         .toString();
+
 	}
 	@Override
 	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		 if (this == o) {
+	            return true;
+	        }
+	        if (!(o instanceof Role)) {
+	            return false;
+	        }
+
+	        final Circuit circuit = (Circuit) o;
+
+	        return !(name != null ? !name.equals(circuit.name) : circuit.name != null);
+
+
 	}
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
-		return 0;
+		return (name !=null?name.hashCode():0);
 	}
 
 }

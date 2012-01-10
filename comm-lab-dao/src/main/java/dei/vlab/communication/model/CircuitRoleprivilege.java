@@ -3,11 +3,12 @@
  */
 package dei.vlab.communication.model;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -16,72 +17,92 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="circuit_role_privilege")
-public class CircuitRoleprivilege {
-	
-	@EmbeddedId
-	private CircuitRolePrivilegePk id;
-	
-	@MapsId("circuitRolePrivilegeCircuitIdPk")
-	@ManyToOne
-	@JoinColumn(name="circuit_id")
-	private Circuit circuitId;
-	@MapsId("circuitRolePrivilegeRightIdPk")
-	@ManyToOne
-	@JoinColumn(name="right_id")
-	private CircuitPrivileges circuitprivlegeId;
-	
-	@MapsId("circuitRolePrivilegeRoleIdPk")
-	@ManyToOne
-	@JoinColumn(name="role_id")
-	private Role roleId;
-	
+public class CircuitRolePrivilege extends BaseObject {
 
 	/**
 	 * 
 	 */
-	public CircuitRoleprivilege() {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	@ManyToOne
+	@JoinColumn(name="circuit_id")
+	private Circuit circuit;
+	@ManyToOne
+	@JoinColumn(name="right_id")
+	private CircuitPrivileges circuitPid;
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private Role role;
+	
+	
+	/**
+	 * 
+	 */
+	public CircuitRolePrivilege() {
 		// TODO Auto-generated constructor stub
 	}
-	public CircuitRolePrivilegePk getId() {
+
+
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(CircuitRolePrivilegePk id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 
-	public Circuit getCircuitId() {
-		return circuitId;
+	public Circuit getCircuit() {
+		return circuit;
 	}
 
 
-	public void setCircuitId(Circuit circuitId) {
-		this.circuitId = circuitId;
+	public void setCircuit(Circuit circuit) {
+		this.circuit = circuit;
 	}
 
 
-	public CircuitPrivileges getCircuitprivlegeId() {
-		return circuitprivlegeId;
+	public CircuitPrivileges getCircuitPid() {
+		return circuitPid;
 	}
 
 
-	public void setCircuitprivlegeId(CircuitPrivileges circuitprivlegeId) {
-		this.circuitprivlegeId = circuitprivlegeId;
+	public void setCircuitPid(CircuitPrivileges circuitPid) {
+		this.circuitPid = circuitPid;
 	}
 
 
-	public Role getRoleId() {
-		return roleId;
+	public Role getRole() {
+		return role;
 	}
 
 
-	public void setRoleId(Role roleId) {
-		this.roleId = roleId;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

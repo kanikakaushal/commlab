@@ -1,18 +1,27 @@
+/**
+ * 
+ */
 package dei.vlab.communication.dao;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import dei.vlab.communication.model.Circuit;
 
-public class CircuitDaoTest extends BaseDaoTestCase{
+/**
+ * @author server
+ *
+ */
+public class CircuitDaoTest extends BaseDaoTestCase {
 	@Autowired
-	private CircuitDao cuDao;
-	 @Test
-	    public void testGetCircuitType() throws Exception {
-	        Circuit cUser = cuDao.get(1L);
-	        assertNotNull(cUser);
-	        
-	    }
-
+	private CircuitDao cDao;
+	
+	@Test
+	public void getCircuitByName() throws Exception{
+		Circuit circuit = cDao.getCircuitByName("gotuanm");
+		 assertNull(circuit);
+			}
+	
 }
