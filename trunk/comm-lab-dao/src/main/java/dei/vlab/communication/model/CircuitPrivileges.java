@@ -10,76 +10,80 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * @author server
  *
  */
 @Entity
-@Table(name="circuit_privileges")
-public class CircuitPrivileges extends BaseObject {
+@Table(name="circuit_privilege")
+public class CircuitPrivileges extends BaseObject{
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="CPid")
-	private Long circuitPrivilegesId;
-	@Column(name="name",nullable=false,length=100)
+	private Long id;
+	@Column(length=64,nullable=false)
 	private String name;
-	@Column(name="description",nullable=false,length=200)
+	@Column(nullable=false,length=100)
 	private String description;
-	
-	
-	public Long getCircuitPrivilegesId() {
-		return circuitPrivilegesId;
-	}
-
-	public void setCircuitPrivilegesId(Long circuitPrivilegesId) {
-		this.circuitPrivilegesId = circuitPrivilegesId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	
 	/**
 	 * 
 	 */
 	public CircuitPrivileges() {
 		// TODO Auto-generated constructor stub
 	}
-
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+         .append(this.name)
+          .append(this.description)
+         .toString();
 
+	}
 	@Override
 	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		 if (this == o) {
+	            return true;
+	        }
+	        if (!(o instanceof Role)) {
+	            return false;
+	        }
 
+	        final CircuitPrivileges  cirPrev = (CircuitPrivileges) o;
+
+	        return !(name != null ? !name.equals(cirPrev.name) : cirPrev.name != null);
+
+
+	}
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
-		return 0;
+		return (name!=null ? name.hashCode():0);
 	}
 
 }

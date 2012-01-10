@@ -21,28 +21,76 @@
     <table name="role">
         <column>id</column>
         <column>name</column>
+         <column>type</column>
         <column>description</column>
         <row>
             <value description="id">1</value>
             <value description="name">ROLE_ADMIN</value>
+             <value description="type">ADMIN</value>
             <value description="description"><![CDATA[Administrator role]]></value>
         </row>
         <row>
             <value description="id">2</value>
             <value description="name">ROLE_BEGINNER</value>
+            <value description="type">USER</value>
             <value description="description"><![CDATA[Beginner Role for Users]]></value>
         </row>
     </table>
-    <table name="user_role">
-        <column>user_id</column>
-        <column>role_id</column>
+    <table name="experiment">
+        <column>id</column>
+         <column>config_properties</column>
+       <column>image_file</column>
+        <column>name</column>
+          <column>node_coordinate</column>
+        <column>type</column>
         <row>
-            <value description="user_id">1</value>
-            <value description="role_id">2</value>
+            <value description="id">1</value>
+            <value description="config_properties">test</value>
+            <value description="image_file">properties</value>
+            <value description="name">test12321</value>
+             <value description="node_coordinate">good</value>
+            <value description="type">image</value>         
         </row>
         <row>
-            <value description="user_id">2</value>
-            <value description="role_id">1</value>
+            <value description="id">2</value>
+            <value description="config_properties">tesgdfgt</value>
+           
+              <value description="image_file">propertiedfgdfs2</value>
+            <value description="name">test1fgdf232112</value>
+             <value description="node_coordinate">Vgogdfgod</value>
+            <value description="type">imaggdfe2</value>
+          
+           
         </row>
     </table>
+    <table name="circuit">
+        <column>id</column>
+         <column>configProperties</column>
+       <column>imageFile</column>
+        <column>name</column>
+          <column>node_coordinates</column>
+        <column>remark</column>
+         <column>type</column>
+        <row>
+            <value description="id">1</value>
+            <value description="configProperties">test1</value>
+            <value description="imageFile">properties</value>
+            <value description="name">name</value>
+             <value description="node_coordinates">node</value>
+             <value description="remark">remark</value>   
+            <value description="type">diode</value>         
+        </row>
+        <row>
+           <value description="id">2</value>
+            <value description="configProperties">config2</value>
+            <value description="imageFile">properties1</value>
+            <value description="name">half</value>
+             <value description="node_coordinates">coordinates</value>
+             <value description="remark">vgoood</value>   
+            <value description="type">ic</value>
+          
+           
+        </row>
+    </table>
+   
 </dataset>

@@ -1,14 +1,28 @@
+/**
+ * 
+ */
 package dei.vlab.communication.dao;
-import static org.junit.Assert.assertNotNull;
+
+import static org.junit.Assert.assertNull;
+
+import javax.persistence.Table;
+
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dei.vlab.communication.model.UserDetail;
 
-public class UserDetailDaoTest  extends BaseDaoTestCase{
-
-	private UserDetailDao udDao;
-	 @Test
-	    public void testGetUserDetail() throws Exception {
-	        UserDetail user = udDao.get(1L);
-	        assertNotNull(user);
-	    }
+/**
+ * @author server
+ *
+ */
+public class UserDetailDaoTest extends BaseDaoTestCase {
+	@Autowired
+	private UserDetailDao userDetDao;
+	
+	@Test
+	public void getUserByUserid() throws Exception{
+		UserDetail userDet= userDetDao.getUserDetailById(1l);
+		
+	}
 }
