@@ -12,41 +12,47 @@ import dei.vlab.communication.model.Role;
 
 /**
  * @author server
- *
+ * 
  */
 @Repository
-public class RolesDaoHibernate  extends GenericDaoHibernate<Role, Long> implements RolesDao{
+public class RolesDaoHibernate extends GenericDaoHibernate<Role, Long> implements RolesDao {
 
-	/**
+    /**
 	 * 
 	 */
-	public RolesDaoHibernate() {
-		super(Role.class);
-	}
+    public RolesDaoHibernate() {
+        super(Role.class);
+    }
 
-	public Role getRoleByName(String roleNmae) {
-		System.out.println("hii this is starting ");
-		List roles= getHibernateTemplate().find("from Role where name=?",roleNmae);
-		if(roles.isEmpty()){
-			return null;
-		}else {
-			return (Role) roles.get(0);
-		}	
-	}
+    public Role findRoleById(Long id) {
+        List roleById = getHibernateTemplate().find("from Role where id=?", id);
+        if (roleById.isEmpty()) {
+            return null;
+        }
+        return (Role) roleById.get(0);
+    }
 
-	public void removeRloe(String roleNmae) {
-		Object role = getRoleByName(roleNmae);
-		getHibernateTemplate().delete(role);
-		
-	}
+    public Role findRoleByName(String name) {
+        List roles = getHibernateTemplate().find("from Role where name=?", name);
+        if (roles.isEmpty()) {
+            return null;
+        } else {
+            return (Role) roles.get(0);
+        }
+    }
 
-	public Role saveRole(Role roleName) {
-		if(log.isDebugEnabled()){
-			log.debug("Update Role is"+roleName);		
-		}
-		getHibernateTemplate().saveOrUpdate(roleName);
-		getHibernateTemplate().flush();
-		return roleName;
-	}
+    public Role saveRole(Role roleName) {
+        if (log.isDebugEnabled()) {
+            log.debug("Update Role is" + roleName);
+        }
+        System.out.println("role name " + roleName);
+        getHibernateTemplate().saveOrUpdate(roleName);
+        return roleName;
+    }
 
+    public void removeRloeByName(String name) {
+        Object role = findRoleByName(name);
+        getHibernateTemplate().delete(role);
+
+    }
 }

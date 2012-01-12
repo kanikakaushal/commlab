@@ -2,7 +2,6 @@ package dei.vlab.communication.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,10 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,13 +20,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * This class represents the basic "user" object in AppFuse that allows for authentication
- * and user management.  It implements Acegi Security's UserDetails interface.
- *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *         Updated by Dan Kibler (dan@getrolling.com)
- *         Extended to implement Acegi UserDetails interface
- *         by David Carter david@carter.net
+ * This class represents the basic "user" object in AppFuse that allows for authentication and user management. It
+ * implements Acegi Security's UserDetails interface.
+ * 
+ * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a> Updated by Dan Kibler (dan@getrolling.com) Extended
+ *         to implement Acegi UserDetails interface by David Carter david@carter.net
  */
 @Entity
 @Table(name = "user")
@@ -38,12 +33,12 @@ public class User extends BaseObject implements Serializable {
     private static final long serialVersionUID = 3832626162173359411L;
 
     private Long id;
-    private String username;                    // required
-    private String password;                    // required
-    private String status;						// required
-    private Set<Role> roles= new HashSet<Role>();
-   
-       
+    private String username; // required
+    private String password; // required
+    private String status; // required
+    private Set<Role> roles = new HashSet<Role>();
+    private UserDetail userDetail;
+
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -52,9 +47,11 @@ public class User extends BaseObject implements Serializable {
 
     /**
      * Create a new instance and set the username.
-     *
-     * @param username login name for user.
+     * 
+     * @param username
+     *            login name for user.
      */
+
     public User(final String username) {
         this.username = username;
     }
@@ -75,7 +72,16 @@ public class User extends BaseObject implements Serializable {
     public String getPassword() {
         return password;
     }
-    
+
+    @OneToOne(fetch = FetchType.EAGER)
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -88,28 +94,28 @@ public class User extends BaseObject implements Serializable {
         this.password = password;
     }
 
-
-  	 
     @Column(nullable = false, length = 50, unique = false)
     public String getStatus() {
-		return status;
-	}
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	@ManyToMany(fetch=FetchType.EAGER)
-	public Set<Role> getRoles() {
-		return roles;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+    @ManyToMany(fetch = FetchType.EAGER)
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-	/**
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    /**
      * {@inheritDoc}
      */
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -127,6 +133,7 @@ public class User extends BaseObject implements Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int hashCode() {
         return (username != null ? username.hashCode() : 0);
     }
@@ -134,9 +141,9 @@ public class User extends BaseObject implements Serializable {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String toString() {
-        ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
-                .append("username", this.username);
+        ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).append("username", this.username);
         if (roles != null) {
             sb.append("Granted Authorities: ");
 
@@ -152,11 +159,7 @@ public class User extends BaseObject implements Serializable {
             sb.append("No Granted Authorities");
         }
 
-     
         return sb.toString();
     }
 
-	
-
-	
 }

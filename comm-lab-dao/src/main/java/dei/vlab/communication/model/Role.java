@@ -15,75 +15,74 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * @author server
- *
+ * 
  */
 @Entity
-@Table(name="role")
-public class Role  extends BaseObject{
+@Table(name = "role")
+public class Role extends BaseObject {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	@Column(length=64,nullable= false)
-	private String name;
-	@Column(length=100,nullable=false)
-	private String type;
-	@Column(nullable=false, length=200)
-	private String description;
-	
-	/**
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private String name;
+    private String type;
+    private String description;
+
+    /**
 	 * 
 	 */
-	public Role() {
-		// TODO Auto-generated constructor stub
-	}
+    public Role() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(length = 64, nullable = false)
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    @Column(length = 100, nullable = false)
+    public String getType() {
+        return type;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(nullable = false, length = 200)
+    public String getDescription() {
+        return description;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@Override
-	public String toString() {
-		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
-         .append(this.name)
-         .toString();
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).toString();
 
-	}
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
         if (!(o instanceof Role)) {
@@ -94,19 +93,19 @@ public class Role  extends BaseObject{
 
         return !(name != null ? !name.equals(role.name) : role.name != null);
 
+    }
 
-	}
-	@Override
-	public int hashCode() {
-		  return (name != null ? name.hashCode() : 0);
+    @Override
+    public int hashCode() {
+        return (name != null ? name.hashCode() : 0);
 
-	}
-	/**
+    }
+
+    /**
      * {@inheritDoc}
      */
     public int compareTo(Object o) {
         return (equals(o) ? 0 : -1);
     }
-
 
 }

@@ -1,6 +1,5 @@
 package dei.vlab.communication.dao.hibernate;
 
-
 import java.util.List;
 
 import javax.persistence.Table;
@@ -14,15 +13,13 @@ import dei.vlab.communication.dao.UserDao;
 import dei.vlab.communication.model.User;
 
 /**
- * This class interacts with Spring's HibernateTemplate to save/delete and
- * retrieve User objects.
- *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *   Modified by <a href="mailto:dan@getrolling.com">Dan Kibler</a>
- *   Extended to implement Acegi UserDetailsService interface by David Carter david@carter.net
- *   Modified by <a href="mailto:bwnoll@gmail.com">Bryan Noll</a> to work with 
- *   the new BaseDaoHibernate implementation that uses generics.
-*/
+ * This class interacts with Spring's HibernateTemplate to save/delete and retrieve User objects.
+ * 
+ * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a> Modified by <a href="mailto:dan@getrolling.com">Dan
+ *         Kibler</a> Extended to implement Acegi UserDetailsService interface by David Carter david@carter.net Modified
+ *         by <a href="mailto:bwnoll@gmail.com">Bryan Noll</a> to work with the new BaseDaoHibernate implementation that
+ *         uses generics.
+ */
 @Repository("userDao")
 public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements UserDao {
 
@@ -55,11 +52,11 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
     }
 
     /**
-     * Overridden simply to call the saveUser method. This is happenening 
-     * because saveUser flushes the session and saveObject of BaseDaoHibernate 
-     * does not.
-     *
-     * @param user the user to save
+     * Overridden simply to call the saveUser method. This is happenening because saveUser flushes the session and
+     * saveObject of BaseDaoHibernate does not.
+     * 
+     * @param user
+     *            the user to save
      * @return the modified user (with a primary key set if they're new)
      */
     @Override
@@ -67,18 +64,15 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
         return this.saveUser(user);
     }
 
-   
-
-    /** 
+    /**
      * {@inheritDoc}
-    */
+     */
     public String getUserPassword(String username) {
-        SimpleJdbcTemplate jdbcTemplate =
-                new SimpleJdbcTemplate(SessionFactoryUtils.getDataSource(getSessionFactory()));
+        SimpleJdbcTemplate jdbcTemplate = new SimpleJdbcTemplate(SessionFactoryUtils.getDataSource(getSessionFactory()));
         Table table = AnnotationUtils.findAnnotation(User.class, Table.class);
-        return jdbcTemplate.queryForObject(
-                "select password from " + table.name() + " where username=?", String.class, username);
+        return jdbcTemplate.queryForObject("select password from " + table.name() + " where username=?", String.class,
+                username);
 
     }
-    
+
 }

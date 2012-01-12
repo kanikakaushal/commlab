@@ -9,24 +9,28 @@ import dei.vlab.communication.model.Message;
 
 /**
  * @author server
- *
+ * 
  */
-public interface MessageDao extends GenericDao<Message, Long>{
-	/*
-	 * Get Message from message table by user id
-	 */
-	Message getMessagesById(Long messageId);
-	/*
-	 * Get list of  message from message table
-	 */
 
-	List getMessage();
-	/*
-	 * save message 
-	 */
-	Message saveMessage(Message messageId);
-	/*
-	 * Delete message
-	 */
-	void deletMessage(Long messageid);
+public interface MessageDao extends GenericDao<Message, Long> {
+    /*
+     * Get Message from message table by user id
+     */
+    List findMessageById(Long id);
+
+    /*
+     * Get list of message from message table
+     */
+
+    List findAllMessage();
+
+    /*
+     * save message
+     */
+    Message saveMessage(Message message);
+
+    /*
+     * Delete message
+     */
+    void deletMessageById(Long id);
 }

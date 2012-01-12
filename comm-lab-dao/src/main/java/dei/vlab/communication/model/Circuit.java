@@ -15,106 +15,126 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * @author server
- *
+ * 
  */
 @Entity
-@Table(name="circuit")
+@Table(name = "circuit")
 public class Circuit extends BaseObject {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	@Column(length=100,nullable=false,unique=true)
-	private String name;
-	@Column(length=100)
-	private String type;
-	@Column(name="node_coordinates",nullable=false)
-	private String noceCordinate;
-	@Column(nullable=false)
-	private String imageFile;
-	@Column(nullable=false)
-	private String configProperties;
-	private String remark;
-	/**
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+
+    private String name;
+
+    private String type;
+
+    private String noceCordinate;
+
+    private String imageFile;
+
+    private String configProperties;
+    private String remark;
+
+    /**
 	 * 
 	 */
-	public Circuit() {
-		// TODO Auto-generated constructor stub
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getNoceCordinate() {
-		return noceCordinate;
-	}
-	public void setNoceCordinate(String noceCordinate) {
-		this.noceCordinate = noceCordinate;
-	}
-	public String getImageFile() {
-		return imageFile;
-	}
-	public void setImageFile(String imageFile) {
-		this.imageFile = imageFile;
-	}
-	public String getConfigProperties() {
-		return configProperties;
-	}
-	public void setConfigProperties(String configProperties) {
-		this.configProperties = configProperties;
-	}
-	public String getRemark() {
-		return remark;
-	}
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-	@Override
-	public String toString() {
-		 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
-         .append(this.name)
-          .append(this.type)
-           .append(this.id)
-         .toString();
+    public Circuit() {
+        // TODO Auto-generated constructor stub
+    }
 
-	}
-	@Override
-	public boolean equals(Object o) {
-		 if (this == o) {
-	            return true;
-	        }
-	        if (!(o instanceof Role)) {
-	            return false;
-	        }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
-	        final Circuit circuit = (Circuit) o;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	        return !(name != null ? !name.equals(circuit.name) : circuit.name != null);
+    @Column(length = 100, nullable = false, unique = true)
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	}
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return (name !=null?name.hashCode():0);
-	}
+    @Column(length = 100)
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Column(name = "node_coordinates", nullable = false)
+    public String getNoceCordinate() {
+        return noceCordinate;
+    }
+
+    public void setNoceCordinate(String noceCordinate) {
+        this.noceCordinate = noceCordinate;
+    }
+
+    @Column(nullable = false)
+    public String getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    @Column(nullable = false)
+    public String getConfigProperties() {
+        return configProperties;
+    }
+
+    public void setConfigProperties(String configProperties) {
+        this.configProperties = configProperties;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).append(this.type)
+                .append(this.id).toString();
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Role)) {
+            return false;
+        }
+
+        final Circuit circuit = (Circuit) o;
+
+        return !(name != null ? !name.equals(circuit.name) : circuit.name != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return (name != null ? name.hashCode() : 0);
+    }
 
 }
