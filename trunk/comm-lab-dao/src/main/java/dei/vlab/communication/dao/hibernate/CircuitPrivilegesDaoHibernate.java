@@ -12,75 +12,58 @@ import dei.vlab.communication.model.CircuitPrivileges;
 
 /**
  * @author server
- *
+ * 
  */
 @Repository
-public class CircuitPrivilegesDaoHibernate extends GenericDaoHibernate<CircuitPrivileges, Long> implements CircuitPrivilegesDao {
+public class CircuitPrivilegesDaoHibernate extends GenericDaoHibernate<CircuitPrivileges, Long> implements
+        CircuitPrivilegesDao {
 
-	/**
+    /**
 	 * 
 	 */
-	public CircuitPrivilegesDaoHibernate() {
-		super(CircuitPrivileges.class);
-	}
+    public CircuitPrivilegesDaoHibernate() {
+        super(CircuitPrivileges.class);
+    }
 
-	public CircuitPrivileges getPrivilegeByName(String circuitName) {
-		CircuitPrivileges circuitPrivivalge=null;
-		try {
-			System.out.println("hiii i am in the Circuit Privilege Hibernate class");
-			circuitPrivivalge = getHibernateTemplate().load(CircuitPrivileges.class, circuitName);
-			if(circuitPrivivalge==null){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuitPrivivalge;
-	}
+    public CircuitPrivileges savePrivilage(CircuitPrivileges cirPrivilege) {
+        if (log.isDebugEnabled()) {
+            log.debug("Save and update  id: " + cirPrivilege);
+        }
+        System.out.println("Description " + cirPrivilege.getDescription());
+        System.out.println("Id " + cirPrivilege.getId());
+        System.out.println("Name " + cirPrivilege.getName());
+        getHibernateTemplate().saveOrUpdate(cirPrivilege);
 
-	public CircuitPrivileges getprivilegesById(Long privId) {
-		CircuitPrivileges circuitPrivById=null;
-		try {
-			circuitPrivById = getHibernateTemplate().load(CircuitPrivileges.class, privId);
-			if(circuitPrivById==null){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuitPrivById;
-	}
+        return cirPrivilege;
+    }
 
+    public List findPrivilegeByName(String name) {
+        List circuitPrivivalge = null;
+        circuitPrivivalge = getHibernateTemplate().find("from CircuitPrivileges where name=?", name);
+        if (circuitPrivivalge.isEmpty()) {
+            return null;
+        }
+        return circuitPrivivalge;
+    }
 
-	public CircuitPrivileges savePrivilage(CircuitPrivileges cirPrivilege) {
-		 if (log.isDebugEnabled()) {
-	            log.debug("Save and update  id: " + cirPrivilege);
-	        }
-		
-		try {
-			getHibernateTemplate().saveOrUpdate(cirPrivilege);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return cirPrivilege;
-	}
+    public CircuitPrivileges findprivilegesById(Long id) {
+        CircuitPrivileges circuitPrivivalgeById = null;
+        circuitPrivivalgeById = getHibernateTemplate().load(CircuitPrivileges.class, id);
+        if (circuitPrivivalgeById == null) {
+            return null;
+        }
+        return circuitPrivivalgeById;
+    }
 
-	public void deletprivilege(Long PrivId) {
-		 if (log.isDebugEnabled()) {
-	            log.debug("delete privilege  id: " + PrivId);
-	        }
-		 try {
-			Object delObject = getHibernateTemplate().load(CircuitPrivileges.class, PrivId);
-			if(delObject!=null){
-				getHibernateTemplate().delete(delObject);
-				getHibernateTemplate().flush();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
+    public void deletPrivilegeById(Long id) {
+        if (log.isDebugEnabled()) {
+            log.debug("delete privilege  id: " + id);
+        }
+        Object delObject = getHibernateTemplate().load(CircuitPrivileges.class, id);
+        if (delObject != null) {
+            getHibernateTemplate().delete(delObject);
+            getHibernateTemplate().flush();
+        }
+    }
 
-
-	
 }

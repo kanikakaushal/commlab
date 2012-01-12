@@ -12,82 +12,61 @@ import dei.vlab.communication.model.UserDetail;
 
 /**
  * @author server
- *
+ * 
  */
 @Repository
-public class UserDetailDaoHibernate  extends GenericDaoHibernate<UserDetail, Long> implements UserDetailDao{
+public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long> implements UserDetailDao {
 
-	/**
+    /**
 	 * 
 	 */
-	public UserDetailDaoHibernate() {
-		super(UserDetail.class);
-	}
+    public UserDetailDaoHibernate() {
+        super(UserDetail.class);
+    }
 
-	public UserDetail getUserDetailById(Long userId) {
-	UserDetail userDetail=null;
-	try {
-		System.out.println("hii i am in the user detail dao hibernate");
-		userDetail= getHibernateTemplate().load(UserDetail.class, userId);
-		if(userDetail==null){
-			return null;
-		}
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-		return userDetail;
-	}
+    public UserDetail findeUserById(Long id) {
 
-	public UserDetail getUserDetailbyname(String userName) {
-		UserDetail userDetailByName=null;
-		try {
-			userDetailByName= getHibernateTemplate().load(UserDetail.class,userName);
-			if(userDetailByName==null){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-			return userDetailByName;
-		}
+        List user = getHibernateTemplate().find("from UserDetail where id=?", id);
+        if (user.isEmpty()) {
+            return null;
+        }
+        return (UserDetail) user.get(0);
 
-	public UserDetail saveUserDetail(UserDetail userId) {
-		 if (log.isDebugEnabled()) {
-	         log.debug("save user's id: " + userId);
-	        }
-		try {
-			getHibernateTemplate().saveOrUpdate(userId);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return userId;
-	}
+    }
 
-	public List getUserDetai() {
-		List useList=null;
-		try {
-			useList= getHibernateTemplate().find("from UserDetail");
-			if(useList.isEmpty()){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		return useList;
-	}
+    public UserDetail findeUserByName(String name) {
+        List user = getHibernateTemplate().find("from UserDetail where first_name=?", name);
+        if (user.isEmpty()) {
+            return null;
+        }
+        return (UserDetail) user.get(0);
+    }
 
-	public void deleteUserDetail(Long userId) {
-		try {
-			Object delObject =getHibernateTemplate().load(UserDetail.class, userId);
-			if(delObject!=null){
-				getHibernateTemplate().delete(delObject);
-				getHibernateTemplate().flush();
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
+    public List findAllUserDetail() {
+        List userDetailList = null;
+        userDetailList = getHibernateTemplate().find("from UserDetail");
+        if (userDetailList.isEmpty()) {
+            return null;
+        }
+        return userDetailList;
+    }
+
+    public void deleteUserDetailById(Long id) {
+        if (log.isDebugEnabled()) {
+            log.debug("Delete user's detail id: " + id);
+        }
+        Object delObject = getHibernateTemplate().load(UserDetail.class, id);
+        if (delObject != null) {
+            getHibernateTemplate().delete(delObject);
+        }
+    }
+
+    public UserDetail saveUserDetail(UserDetail userDetail) {
+        if (log.isDebugEnabled()) {
+            log.debug("save detail id: " + userDetail);
+        }
+        getHibernateTemplate().saveOrUpdate(userDetail);
+        return userDetail;
+    }
 
 }

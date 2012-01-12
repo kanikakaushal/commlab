@@ -34,5 +34,18 @@ public class UserDaoTest extends BaseDaoTestCase {
         assertNotNull(password);
         log.debug("password: " + password);
     }
+    
+    @Test
+    public void testSaveUser() {
+    	User test = new User();
+    	//test.setId(3L);
+    	test.setPassword("gotuam");
+    	test.setStatus("ACTIVE");
+    	test.setUsername("user");
+    	
+    	//dao.saveUser(test);
+		//assertNotNull("hii", save);
+		
+    }
 
 }

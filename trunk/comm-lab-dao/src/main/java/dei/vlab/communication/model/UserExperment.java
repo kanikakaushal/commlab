@@ -13,92 +13,83 @@ import javax.persistence.Table;
 
 /**
  * @author server
- *
+ * 
  */
 @Entity
-@Table(name="user_experment")
+@Table(name = "user_experment")
 public class UserExperment extends BaseObject {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
-	@ManyToOne
-	@JoinColumn(name="circuit_id")
-	private Circuit circuit;
-	@ManyToOne
-	@JoinColumn(name="experiment_id")
-	private Experiment experiment;
-	
-	
-	/**
+    /**
 	 * 
 	 */
-	public UserExperment() {
-		// TODO Auto-generated constructor stub
-	}
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private User user;
+    private Circuit circuit;
+    private Experiment experiment;
 
+    /**
+	 * 
+	 */
+    public UserExperment() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User getUser() {
+        return user;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "circuit_id")
+    public Circuit getCircuit() {
+        return circuit;
+    }
 
+    @ManyToOne
+    @JoinColumn(name = "experiment_id")
+    public Experiment getExperiment() {
+        return experiment;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setCircuit(Circuit circuit) {
+        this.circuit = circuit;
+    }
 
+    public void setExperiment(Experiment experiment) {
+        this.experiment = experiment;
+    }
 
-	public Circuit getCircuit() {
-		return circuit;
-	}
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	public void setCircuit(Circuit circuit) {
-		this.circuit = circuit;
-	}
-
-
-	public Experiment getExperiment() {
-		return experiment;
-	}
-
-
-	public void setExperiment(Experiment experiment) {
-		this.experiment = experiment;
-	}
-
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }

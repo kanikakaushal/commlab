@@ -3,8 +3,6 @@
  */
 package dei.vlab.communication.dao.hibernate;
 
-
-
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -14,72 +12,58 @@ import dei.vlab.communication.model.Experiment;
 
 /**
  * @author server
- *
+ * 
  */
 @Repository
 public class ExperimentsDaoHibernate extends GenericDaoHibernate<Experiment, Long> implements ExperimentsDao {
 
-	/**
+    /**
 	 * 
 	 */
-	public ExperimentsDaoHibernate() {
-		super(Experiment.class);
-	}
+    public ExperimentsDaoHibernate() {
+        super(Experiment.class);
+    }
 
-	public Experiment getExperimentByName(String ExperimentName) {
-		System.out.println("starting Experiment");
-		List experiment= getHibernateTemplate().find("from Experiment where name=?",ExperimentName);
-		if(experiment.isEmpty()){
-			return null;
-		}else{
-			return (Experiment) experiment.get(0);
-		}
-	}
+    public Experiment findExperimentByName(String name) {
+        List experiment = getHibernateTemplate().find("from Experiment where name=?", name);
+        if (experiment.isEmpty()) {
+            return null;
+        } else {
+            return (Experiment) experiment.get(0);
+        }
+    }
 
-	public Experiment updateExperiment(Long experimentId) {
-		 if (log.isDebugEnabled()) {
-	            log.debug("experment's id: " + experimentId);
-	        }
-	        getHibernateTemplate().saveOrUpdate(experimentId);
-	        // necessary to throw a DataIntegrityViolation and catch it in UserManager
-	        getHibernateTemplate().flush();
-	        return null;
-	}
+    public Experiment findExperimentById(Long id) {
+        if (log.isDebugEnabled()) {
+            log.debug("experment's id: " + id);
+        }
+        getHibernateTemplate().saveOrUpdate(id);
+        return null;
+    }
 
-	public void deleteExperiment(Long experimentId) {
-		try {
-			Object o = getHibernateTemplate().load(Experiment.class, experimentId);
-			if(o!=null){
-				getHibernateTemplate().delete(o);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+    public List findAllExperiment() {
+        List experimentList = null;
+        experimentList = getHibernateTemplate().find("from Experment");
+        if (experimentList.isEmpty()) {
+            return null;
+        }
+        return experimentList;
+    }
 
-	public Experiment getExperimentById(Long expermentId) {
-		Experiment expriment=null;
-		try {
-			System.out.println("hii i am in the Experment logggg>>>");
-			expriment=getHibernateTemplate().load(Experiment.class, expermentId);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return expriment;
-		}
+    public Experiment updateExperimentById(Long id) {
+        List experimentId = getHibernateTemplate().find("from Experiment where name=?", id);
+        if (experimentId.isEmpty()) {
+            return null;
+        } else {
+            return (Experiment) experimentId.get(0);
+        }
+    }
 
-	public List getExperiment() {
-		List experimentList = null;
-		try {
-			experimentList=getHibernateTemplate().find("from Experment");
-			if(experimentList.isEmpty()){
-				return null;
-			}
-		} catch (Exception e) {
-			
-		}
-		return experimentList;
-	}
-	
+    public void deleteExperimentById(Long id) {
+        Object delObj = getHibernateTemplate().load(Experiment.class, id);
+        if (delObj != null) {
+            getHibernateTemplate().delete(delObj);
+        }
+    }
 
 }

@@ -12,80 +12,62 @@ import dei.vlab.communication.model.Circuit;
 
 /**
  * @author server
- *
+ * 
  */
 @Repository
 public class CircuitDaoHibernate extends GenericDaoHibernate<Circuit, Long> implements CircuitDao {
 
-	/**
+    /**
 	 * 
 	 */
-	public CircuitDaoHibernate() {
-		super(Circuit.class);
-	}
+    public CircuitDaoHibernate() {
+        super(Circuit.class);
+    }
 
-	public Circuit getCircuitById(Long circuitId) {
-		Circuit circuit=null;
-		try {
-			circuit=getHibernateTemplate().load(Circuit.class, circuitId);
-			if(circuit==null){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuit;
-	}
+    public List findCircuitById(Long id) {
+        List circuit = null;
+        circuit = getHibernateTemplate().find("from Circuit where id=?", id);
+        if (circuit.isEmpty()) {
+            return null;
+        }
+        return circuit;
+    }
 
-	public List getCircuit() {
-		List circuitList=null;
-		try {
-			circuitList= getHibernateTemplate().find("from Circuit");
-			if(circuitList.isEmpty()){
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuitList;
-	}
+    public List findAllCircuit() {
+        List circuitList = null;
+        circuitList = getHibernateTemplate().find("from Circuit");
+        if (circuitList.isEmpty()) {
+            return null;
+        }
+        return circuitList;
+    }
 
-	public Circuit getCircuitByName(String circuitName) {
-		Circuit circuitByName=null;
-		try {
-			System.out.println(">>>>>>>>>>>>>hiii i an in Circuit dao hibernate calss>>>>>>>>");
-			circuitByName= getHibernateTemplate().load(Circuit.class, circuitName);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuitByName;
-	}
+    public Circuit findCircuitByName(String name) {
+        Circuit circuit = null;
+        circuit = getHibernateTemplate().load(Circuit.class, name);
+        if (circuit == null) {
+            return null;
+        }
+        return circuit;
+    }
 
-	public Circuit saveCircuit(Circuit circuit) {
-		if(log.isDebugEnabled()){
-			log.debug("save and update "+circuit);		
-		}
-		try {
-			getHibernateTemplate().saveOrUpdate(circuit);
-			getHibernateTemplate().flush();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return circuit;
-	}
+    public void deletCircuitById(Long id) {
+        if (log.isDebugEnabled()) {
+            log.debug("Delete circuit id " + id);
+        }
+        Object deletObject = getHibernateTemplate().load(Circuit.class, id);
+        if (deletObject != null) {
+            getHibernateTemplate().delete(deletObject);
+        }
 
-	public void deletCircuit(Long curcuitId) {
-		if(log.isDebugEnabled()){
-			log.debug("Delete circuit id "+curcuitId);		
-		}
-		try {
-				Object deletObject= getHibernateTemplate().load(Circuit.class, curcuitId);
-				if(deletObject!=null){
-					getHibernateTemplate().delete(deletObject);
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-	}
+    }
+
+    public Circuit saveCircuit(Circuit circuit) {
+        if (log.isDebugEnabled()) {
+            log.debug("save and update " + circuit);
+        }
+        getHibernateTemplate().saveOrUpdate(circuit);
+        return circuit;
+    }
 
 }

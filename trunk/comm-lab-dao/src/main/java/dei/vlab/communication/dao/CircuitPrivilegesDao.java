@@ -4,21 +4,25 @@ import java.util.List;
 
 import dei.vlab.communication.model.CircuitPrivileges;
 
-public interface CircuitPrivilegesDao extends GenericDao<CircuitPrivileges,Long> {
-	/*
-	 * Get Circuit Privileges from circuit_privileges.
-	 */
-	CircuitPrivileges getPrivilegeByName(String circuitNmae);
-	/*
-	 * Get Circuit Privileges by Id from circuit_privileges.
-	 */
-	CircuitPrivileges getprivilegesById(Long privId);
-	/*
-	 * save and update privilege
-	 */
-	CircuitPrivileges savePrivilage(CircuitPrivileges cirPrivilege);
-	/*
-	 * Delete privilege 
-	 */
-	void deletprivilege(Long PrivId);
+public interface CircuitPrivilegesDao extends GenericDao<CircuitPrivileges, Long> {
+    /*
+     * Find Circuit Privileges by name from circuit_privileges table.
+     */
+
+    List findPrivilegeByName(String name);
+
+    /*
+     * Find Circuit Privileges by Id from circuit_privileges table.
+     */
+    CircuitPrivileges findprivilegesById(Long id);
+
+    /*
+     * Save and update privilege
+     */
+    CircuitPrivileges savePrivilage(CircuitPrivileges circuitPrivilege);
+
+    /*
+     * Delete privilege
+     */
+    void deletPrivilegeById(Long id);
 }
