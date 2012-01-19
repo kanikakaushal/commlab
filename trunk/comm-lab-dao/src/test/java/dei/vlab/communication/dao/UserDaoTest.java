@@ -2,17 +2,27 @@ package dei.vlab.communication.dao;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.ExpectedException;
+import org.springframework.test.annotation.NotTransactional;
+import org.springframework.test.annotation.Rollback;
 
+import dei.vlab.communication.model.Role;
 import dei.vlab.communication.model.User;
+import dei.vlab.communication.model.UserDetail;
 
 public class UserDaoTest extends BaseDaoTestCase {
     @Autowired
     private UserDao dao;
-   
+    @Autowired
+    private RolesDao rolesDao;
+  
 
     @Test
     @ExpectedException(DataAccessException.class)
@@ -36,15 +46,39 @@ public class UserDaoTest extends BaseDaoTestCase {
     }
     
     @Test
+    @Rollback(false)
     public void testSaveUser() {
-    	User test = new User();
-    	//test.setId(3L);
-    	test.setPassword("gotuam");
-    	test.setStatus("ACTIVE");
-    	test.setUsername("user");
+    	// login info
+    	User newUser = new User();
+     	newUser.setPassword("gotuam");
+    	newUser.setStatus("ACTIVE");
+    	newUser.setUsername("user1");
     	
-    	//dao.saveUser(test);
-		//assertNotNull("hii", save);
+    	//role info
+    	Role role = rolesDao.findRoleById(1l);
+     	Set<Role> roles= new HashSet<Role>();
+    	roles.add(role);
+    	assertNotNull(role.getId());
+    	newUser.setRoles(roles);
+    	
+    	// user detail info
+    	UserDetail userDetail = new UserDetail();
+    	userDetail.setFirst_name("gotuam");
+       	userDetail.setLast_name("last_name");
+       	userDetail.setEmail_address("gotuam@system.com");
+       	userDetail.setAddress1("address1");
+       	userDetail.setAddress2("address2");
+       	userDetail.setStreet("street");
+       	userDetail.setCity("city");
+       	userDetail.setCountry("country");
+    	newUser.setUserDetail(userDetail);
+    	
+    	
+    	
+    	User user =dao.saveUser(newUser);
+		assertNotNull(newUser.getId());
+		System.out.println("user id >>>>>>>>>>>>>>>>>>"+dao.get(newUser.getId()));
+		flush();
 		
     }
 

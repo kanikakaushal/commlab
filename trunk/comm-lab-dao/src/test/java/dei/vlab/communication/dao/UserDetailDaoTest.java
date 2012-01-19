@@ -19,17 +19,14 @@ public class UserDetailDaoTest extends BaseDaoTestCase {
     private UserDetailDao userDetDao;
 
     @Test
-    public void getUserByUserid() throws Exception {
-        UserDetail userDet = userDetDao.findeUserById(1l);
-        assertNotNull(userDet);
-        // assertNotNull(userDet.getAddress1());
-        // assertNotNull(userDet.getAddress2());
+    public void getFindeUserDetailById() throws Exception {
+        UserDetail userDetail = userDetDao.findeUserDetailById(1l);
+        assertNotNull(userDetail);
     }
 
     @Test
-    public void testFindeUserInId() {
-        UserDetail userd = userDetDao.findeUserByName("goutam");
-        assertNotNull(userd);
-        // assertNotNull(userd.getCollege_name());
+    public void testFindeUserByFirstName() {
+        UserDetail userDetail = userDetDao.findeUserDetailByFirstName("user1_fn");
+        assertNotNull(userDetail);
     }
 }
