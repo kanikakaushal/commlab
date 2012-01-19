@@ -55,16 +55,6 @@ public class UserDetail extends BaseObject {
         return id;
     }
 
-    @OneToOne(cascade = CascadeType.ALL,targetEntity=User.class)
-    @JoinColumn(name="user_id", referencedColumnName="id",insertable=false,updatable=false)
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getFirst_name() {
         return first_name;
     }
