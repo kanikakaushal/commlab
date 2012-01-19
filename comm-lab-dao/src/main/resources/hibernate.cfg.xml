@@ -10,7 +10,6 @@
         <mapping class="dei.vlab.communication.model.User"/>
         <mapping class="dei.vlab.communication.model.Role"/>
         <mapping class="dei.vlab.communication.model.Experiment"/>
-        <mapping class="dei.vlab.communication.model.UserRole"/>
         <mapping class="dei.vlab.communication.model.Circuit"/>
         <mapping class="dei.vlab.communication.model.CircuitPrivileges"/>
          <mapping class="dei.vlab.communication.model.UserExperment"/>
