@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -73,8 +75,9 @@ public class User extends BaseObject implements Serializable {
         return password;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    public UserDetail getUserDetail() {
+    @OneToOne(cascade = CascadeType.ALL,targetEntity=UserDetail.class)
+    @JoinColumn(name="user_detail_id", referencedColumnName="id",insertable=true,updatable=true)
+     public UserDetail getUserDetail() {
         return userDetail;
     }
 

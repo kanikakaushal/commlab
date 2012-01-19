@@ -3,11 +3,13 @@
  */
 package dei.vlab.communication.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -53,7 +55,8 @@ public class UserDetail extends BaseObject {
         return id;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity=User.class)
+    @JoinColumn(name="user_id", referencedColumnName="id",insertable=false,updatable=false)
     public User getUser() {
         return user;
     }
