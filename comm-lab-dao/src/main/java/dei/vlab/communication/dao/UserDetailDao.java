@@ -16,12 +16,12 @@ public interface UserDetailDao extends GenericDao<UserDetail, Long> {
      * Find User Detail by user id from the user_detail table
      */
 
-    UserDetail findeUserById(Long id);
+    UserDetail findeUserDetailById(Long id);
 
     /*
-     * Find UserDetail by user name
+     * Find UserDetail by user first name
      */
-    UserDetail findeUserByName(String name);
+    UserDetail findeUserDetailByFirstName(String name);
 
     /*
      * Save user Detail by id
