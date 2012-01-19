@@ -76,7 +76,7 @@ public class User extends BaseObject implements Serializable {
     }
 
     @OneToOne(cascade = CascadeType.ALL,targetEntity=UserDetail.class)
-    @JoinColumn(name="user_detail_id", referencedColumnName="id",insertable=true,updatable=true)
+    @JoinColumn(name="user_detail_id", referencedColumnName="id")
      public UserDetail getUserDetail() {
         return userDetail;
     }
