@@ -1,96 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <table name="user">
-        <column>id</column>
-        <column>username</column>
-        <column>password</column>
-        <column>status</column>
-        <row>
-            <value description="id">1</value>
-            <value description="username">user</value>
-            <value description="password">12dea96fec20593566ab75692c9949596833adc9</value>
-            <value description="status">active</value>
-            </row>
-        <row>
+	<table name="user">
+		<column>id</column>
+		<column>username</column>
+		<column>password</column>
+		<column>status</column>
+		<row>
+			<value description="id">1</value>
+			<value description="username">user</value>
+			<value description="password">12dea96fec20593566ab75692c9949596833adc9
+			</value>
+			<value description="status">active</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="username">admin</value>
+			<value description="password">d033e22ae348aeb5660fc2140aec35850c4da997
+			</value>
+			<value description="status">active</value>
+		</row>
+	</table>
+	<table name="role">
+		<column>id</column>
+		<column>name</column>
+		<column>type</column>
+		<column>description</column>
+		<row>
+			<value description="id">1</value>
+			<value description="name">ROLE_ADMIN</value>
+			<value description="type">ADMIN</value>
+			<value description="description"><![CDATA[Administrator role]]></value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="name">ROLE_BEGINNER</value>
+			<value description="type">USER</value>
+			<value description="description"><![CDATA[Beginner Role for Users]]></value>
+		</row>
+	</table>
+	<table name="experiment">
+		<column>id</column>
+		<column>config_properties</column>
+		<column>image_file</column>
+		<column>name</column>
+		<column>node_coordinate</column>
+		<column>type</column>
+		<row>
+			<value description="id">1</value>
+			<value description="config_properties">test</value>
+			<value description="image_file">properties</value>
+			<value description="name">test12321</value>
+			<value description="node_coordinate">good</value>
+			<value description="type">image</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="config_properties">tesgdfgt</value>
+
+			<value description="image_file">propertiedfgdfs2</value>
+			<value description="name">test1fgdf232112</value>
+			<value description="node_coordinate">Vgogdfgod</value>
+			<value description="type">imaggdfe2</value>
+
+
+		</row>
+	</table>
+	<table name="circuit">
+		<column>id</column>
+		<column>configProperties</column>
+		<column>imageFile</column>
+		<column>name</column>
+		<column>node_coordinates</column>
+		<column>remark</column>
+		<column>type</column>
+		<row>
+			<value description="id">1</value>
+			<value description="configProperties">test1</value>
+			<value description="imageFile">properties</value>
+			<value description="name">name</value>
+			<value description="node_coordinates">node</value>
+			<value description="remark">remark</value>
+			<value description="type">diode</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="configProperties">config2</value>
+			<value description="imageFile">properties1</value>
+			<value description="name">half</value>
+			<value description="node_coordinates">coordinates</value>
+			<value description="remark">vgoood</value>
+			<value description="type">ic</value>
+
+
+		</row>
+	</table>
+
+
+	<table name="user_detail">
+		<column>id</column>
+		<column>first_name</column>
+		<column>last_name</column>
+		<column>email_address</column>
+		<column>contact_no</column>
+        <column>address1</column>
+        <column>address2</column>
+        <column>street</column>
+        <column>city</column>
+		<column>country</column>
+		<column>college_name</column>
+        <column>user_id</column>
+		<row>
+			<value description="id">1</value>
+			<value description="first_name">user1_fn</value>
+			<value description="last_name">user1_ln</value>
+			<value description="email_address">user1@system.com</value>
+			<value description="contact_no">00000000</value>
+			<value description="address1">user1_add1</value>
+            <value description="address2">user1_add2</value>
+            <value description="street">user1_street</value>
+            <value description="city">user1_city</value>
+            <value description="country">user1_country</value>
+            <value description="college_name">user1_college_name</value>
+		</row>
+    <row>
             <value description="id">2</value>
-            <value description="username">admin</value>
-            <value description="password">d033e22ae348aeb5660fc2140aec35850c4da997</value>
-            <value description="status">active</value>
+            <value description="first_name">user2_fn</value>
+            <value description="last_name">user2_ln</value>
+            <value description="email_address">user2@system.com</value>
+            <value description="contact_no">00000002</value>
+            <value description="address1">user2_add1</value>
+            <value description="address2">user2_add2</value>
+            <value description="street">user2_street</value>
+            <value description="city">user2_city</value>
+            <value description="country">user2_country</value>
+            <value description="college_name">user2_college_name</value>
         </row>
     </table>
-    <table name="role">
-        <column>id</column>
-        <column>name</column>
-         <column>type</column>
-        <column>description</column>
-        <row>
-            <value description="id">1</value>
-            <value description="name">ROLE_ADMIN</value>
-             <value description="type">ADMIN</value>
-            <value description="description"><![CDATA[Administrator role]]></value>
-        </row>
-        <row>
-            <value description="id">2</value>
-            <value description="name">ROLE_BEGINNER</value>
-            <value description="type">USER</value>
-            <value description="description"><![CDATA[Beginner Role for Users]]></value>
-        </row>
-    </table>
-    <table name="experiment">
-        <column>id</column>
-         <column>config_properties</column>
-       <column>image_file</column>
-        <column>name</column>
-          <column>node_coordinate</column>
-        <column>type</column>
-        <row>
-            <value description="id">1</value>
-            <value description="config_properties">test</value>
-            <value description="image_file">properties</value>
-            <value description="name">test12321</value>
-             <value description="node_coordinate">good</value>
-            <value description="type">image</value>         
-        </row>
-        <row>
-            <value description="id">2</value>
-            <value description="config_properties">tesgdfgt</value>
-           
-              <value description="image_file">propertiedfgdfs2</value>
-            <value description="name">test1fgdf232112</value>
-             <value description="node_coordinate">Vgogdfgod</value>
-            <value description="type">imaggdfe2</value>
-          
-           
-        </row>
-    </table>
-    <table name="circuit">
-        <column>id</column>
-         <column>configProperties</column>
-       <column>imageFile</column>
-        <column>name</column>
-          <column>node_coordinates</column>
-        <column>remark</column>
-         <column>type</column>
-        <row>
-            <value description="id">1</value>
-            <value description="configProperties">test1</value>
-            <value description="imageFile">properties</value>
-            <value description="name">name</value>
-             <value description="node_coordinates">node</value>
-             <value description="remark">remark</value>   
-            <value description="type">diode</value>         
-        </row>
-        <row>
-           <value description="id">2</value>
-            <value description="configProperties">config2</value>
-            <value description="imageFile">properties1</value>
-            <value description="name">half</value>
-             <value description="node_coordinates">coordinates</value>
-             <value description="remark">vgoood</value>   
-            <value description="type">ic</value>
-          
-           
-        </row>
-    </table>
-   
+
 </dataset>
