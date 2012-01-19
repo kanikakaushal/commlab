@@ -24,7 +24,7 @@ public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long
         super(UserDetail.class);
     }
 
-    public UserDetail findeUserById(Long id) {
+    public UserDetail findeUserDetailById(Long id) {
 
         List user = getHibernateTemplate().find("from UserDetail where id=?", id);
         if (user.isEmpty()) {
@@ -34,7 +34,7 @@ public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long
 
     }
 
-    public UserDetail findeUserByName(String name) {
+    public UserDetail findeUserDetailByFirstName(String name) {
         List user = getHibernateTemplate().find("from UserDetail where first_name=?", name);
         if (user.isEmpty()) {
             return null;
