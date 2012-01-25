@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 @Entity
 @Table(name = "user_detail")
+
 public class UserDetail extends BaseObject {
 
     /**
@@ -40,9 +42,10 @@ public class UserDetail extends BaseObject {
     private String city;
     private String country;
     private String college_name;
-    private User user;
+   
 
-    /**
+   
+	/**
 	 * 
 	 */
     public UserDetail() {
@@ -54,6 +57,8 @@ public class UserDetail extends BaseObject {
     public Long getId() {
         return id;
     }
+    
+   
 
     public String getFirst_name() {
         return first_name;

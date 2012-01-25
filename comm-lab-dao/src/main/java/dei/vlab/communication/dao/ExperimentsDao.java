@@ -36,7 +36,7 @@ public interface ExperimentsDao extends GenericDao<Experiment, Long> {
      * Save and update experiment
      */
 
-    Experiment updateExperimentById(Long id);
+    Experiment saveExperimentById(Long id);
 
     /*
      * Delete experiment from the database by name

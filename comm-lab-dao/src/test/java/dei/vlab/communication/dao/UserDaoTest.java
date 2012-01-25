@@ -8,9 +8,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.ExpectedException;
-import org.springframework.test.annotation.NotTransactional;
 import org.springframework.test.annotation.Rollback;
 
 import dei.vlab.communication.model.Role;
@@ -37,6 +35,7 @@ public class UserDaoTest extends BaseDaoTestCase {
         assertNotNull(user);
     }
 
+    
     @Test
     public void testGetUserPassword() throws Exception {
         User user = dao.get(1L);
@@ -72,14 +71,12 @@ public class UserDaoTest extends BaseDaoTestCase {
        	userDetail.setCity("city");
        	userDetail.setCountry("country");
     	newUser.setUserDetail(userDetail);
-    	
-    	
-    	
     	User user =dao.saveUser(newUser);
 		assertNotNull(newUser.getId());
 		System.out.println("user id >>>>>>>>>>>>>>>>>>"+dao.get(newUser.getId()));
 		flush();
 		
     }
+    
 
 }

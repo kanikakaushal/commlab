@@ -28,7 +28,7 @@ public interface CircuitDao extends GenericDao<Circuit, Long> {
     /*
      * Find Circuit by Circuit name from circuit table into database
      */
-    Circuit findCircuitByName(String name);
+    List findCircuitByName(String name);
 
     /*
      * Save circuit into database in circuit table.

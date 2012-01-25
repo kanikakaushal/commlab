@@ -32,6 +32,7 @@ public interface UserDetailDao extends GenericDao<UserDetail, Long> {
      * Find All detail.
      */
     List findAllUserDetail();
+    
 
     /*
      * Delete user detail by user Detail id

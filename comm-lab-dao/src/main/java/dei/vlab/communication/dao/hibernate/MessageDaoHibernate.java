@@ -22,12 +22,12 @@ public class MessageDaoHibernate extends GenericDaoHibernate<Message, Long> impl
 
     }
 
-    public Message saveMessage(Message messageId) {
+    public Message saveMessage(Message message) {
         if (log.isDebugEnabled()) {
-            log.debug("Going for Saving Message id " + messageId);
+            log.debug("Going for Saving Message id " + message);
         }
-        getHibernateTemplate().saveOrUpdate(messageId);
-        return messageId;
+        getHibernateTemplate().saveOrUpdate(message);
+        return message;
     }
 
     public List findMessageById(Long id) {
@@ -52,6 +52,7 @@ public class MessageDaoHibernate extends GenericDaoHibernate<Message, Long> impl
         Object delmessage = getHibernateTemplate().load(Message.class, id);
         if (delmessage != null) {
             getHibernateTemplate().delete(delmessage);
+            getHibernateTemplate().flush();
         }
 
     }
