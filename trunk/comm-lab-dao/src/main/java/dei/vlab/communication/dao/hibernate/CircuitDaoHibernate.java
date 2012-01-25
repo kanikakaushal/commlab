@@ -42,9 +42,9 @@ public class CircuitDaoHibernate extends GenericDaoHibernate<Circuit, Long> impl
         return circuitList;
     }
 
-    public Circuit findCircuitByName(String name) {
-        Circuit circuit = null;
-        circuit = getHibernateTemplate().load(Circuit.class, name);
+    public List findCircuitByName(String name) {
+        List circuit = null;
+        circuit =  getHibernateTemplate().find("from Circuit where name=?", name);
         if (circuit == null) {
             return null;
         }

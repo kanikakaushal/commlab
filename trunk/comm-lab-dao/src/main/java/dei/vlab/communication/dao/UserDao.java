@@ -21,6 +21,7 @@ public interface UserDao extends GenericDao<User, Long> {
      * @return List populated list of users
      */
     List<User> getUsers();
+    
 
     /**
      * Saves a user's information.

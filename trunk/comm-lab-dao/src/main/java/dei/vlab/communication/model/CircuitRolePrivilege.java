@@ -3,13 +3,22 @@
  */
 package dei.vlab.communication.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * @author server
@@ -25,43 +34,50 @@ public class CircuitRolePrivilege extends BaseObject {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
     private Circuit circuit;
+    private CircuitPrivileges circuitPrivilege;
+    private Set<Role> roles= new HashSet<Role>();
 
-    private CircuitPrivileges circuitPid;
-
-    private Role role;
-
-    /**
+	/**
 	 * 
 	 */
+    
     public CircuitRolePrivilege() {
         // TODO Auto-generated constructor stub
     }
+   
 
+    
+    @ManyToOne(cascade=CascadeType.ALL,targetEntity=CircuitPrivileges.class)
+    @JoinColumn(name="circuit_privilege_id",referencedColumnName="id")
+    public CircuitPrivileges getCircuitPrivilege() {
+		return circuitPrivilege;
+	}
+
+	public void setCircuitPrivilege(CircuitPrivileges circuitPrivilege) {
+		this.circuitPrivilege = circuitPrivilege;
+	}
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "circuit_id")
+    @ManyToOne(cascade=CascadeType.ALL,targetEntity=Circuit.class)
+    @JoinColumn(name = "circuit_id" , referencedColumnName="id")
     public Circuit getCircuit() {
         return circuit;
     }
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinColumn(name="role_id")
+    public Set<Role> getRoles() {
+		return roles;
+	}
 
-    @ManyToOne
-    @JoinColumn(name = "right_id")
-    public CircuitPrivileges getCircuitPid() {
-        return circuitPid;
-    }
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    public Role getRole() {
-        return role;
-    }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
     public void setId(Long id) {
         this.id = id;
@@ -71,30 +87,38 @@ public class CircuitRolePrivilege extends BaseObject {
         this.circuit = circuit;
     }
 
-    public void setCircuitPid(CircuitPrivileges circuitPid) {
-        this.circuitPid = circuitPid;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
+   
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+    	 return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+    	 .append(this.circuitPrivilege)
+    	 .append(this.roles)
+    	  .append(this.circuit)
+    	   .append(this.id)
+         .toString();
+
     }
 
     @Override
     public boolean equals(Object o) {
-        // TODO Auto-generated method stub
-        return false;
+    	  if (this == o) {
+              return true;
+          }
+          if (!(o instanceof Role)) {
+              return false;
+          }
+
+          final CircuitRolePrivilege cirRolePrev = (CircuitRolePrivilege) o;
+
+          return !(roles != null ? !roles.equals(cirRolePrev.roles) : cirRolePrev.roles != null);
+
     }
 
     @Override
     public int hashCode() {
         // TODO Auto-generated method stub
-        return 0;
+    	 return (roles != null ? roles.hashCode() : 0);
     }
 
 }

@@ -34,29 +34,32 @@ public class ExperimentsDaoHibernate extends GenericDaoHibernate<Experiment, Lon
     }
 
     public Experiment findExperimentById(Long id) {
-        if (log.isDebugEnabled()) {
-            log.debug("experment's id: " + id);
-        }
-        getHibernateTemplate().saveOrUpdate(id);
-        return null;
+    	 List experimentId = getHibernateTemplate().find("from Experiment where id=?", id);
+         if (experimentId.isEmpty()) {
+             return null;
+         } else {
+             return (Experiment) experimentId.get(0);
+         }
+    	
+    	
+       
     }
 
     public List findAllExperiment() {
         List experimentList = null;
-        experimentList = getHibernateTemplate().find("from Experment");
+        experimentList = getHibernateTemplate().find("from Experiment");
         if (experimentList.isEmpty()) {
             return null;
         }
         return experimentList;
     }
 
-    public Experiment updateExperimentById(Long id) {
-        List experimentId = getHibernateTemplate().find("from Experiment where name=?", id);
-        if (experimentId.isEmpty()) {
-            return null;
-        } else {
-            return (Experiment) experimentId.get(0);
-        }
+    public Experiment saveExperimentById(Long id) {
+    	 if (log.isDebugEnabled()) {
+             log.debug("experment's id: " + id);
+         }
+         getHibernateTemplate().saveOrUpdate(id);
+         return null;
     }
 
     public void deleteExperimentById(Long id) {

@@ -17,7 +17,7 @@ public interface MessageDao extends GenericDao<Message, Long> {
      * Get Message from message table by user id
      */
     List findMessageById(Long id);
-
+    
     /*
      * Get list of message from message table
      */
@@ -25,7 +25,7 @@ public interface MessageDao extends GenericDao<Message, Long> {
     List findAllMessage();
 
     /*
-     * save message
+     * Save message
      */
     Message saveMessage(Message message);
 

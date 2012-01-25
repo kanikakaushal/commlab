@@ -9,7 +9,7 @@ public interface CircuitPrivilegesDao extends GenericDao<CircuitPrivileges, Long
      * Find Circuit Privileges by name from circuit_privileges table.
      */
 
-    List findPrivilegeByName(String name);
+    CircuitPrivileges findPrivilegeByName(String name);
 
     /*
      * Find Circuit Privileges by Id from circuit_privileges table.
