@@ -46,7 +46,7 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
             log.debug("user's id: " + user.getId());
         }
         getHibernateTemplate().saveOrUpdate(user);
-        // necessary to throw a DataIntegrityViolation and catch it in UserManager
+        // necessary to throw a DataIntegrityViolation and catch it in UserManager //
         getHibernateTemplate().flush();
         return user;
     }

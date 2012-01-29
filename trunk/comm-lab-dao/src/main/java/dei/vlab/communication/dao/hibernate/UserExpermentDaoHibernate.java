@@ -12,7 +12,6 @@ import dei.vlab.communication.model.UserExperment;
 
 /**
  * @author server
- *
  */
 @Repository
 public class UserExpermentDaoHibernate extends GenericDaoHibernate<UserExperment, Long> implements UserExpermentDao{

@@ -16,7 +16,7 @@ import java.util.Map;
  * @param <PK>
  *            the primary key for that type
  */
-
+ 
 public interface GenericDao<T, PK extends Serializable> {
 
     /**

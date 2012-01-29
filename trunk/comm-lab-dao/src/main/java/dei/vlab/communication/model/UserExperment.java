@@ -31,9 +31,6 @@ public class UserExperment extends BaseObject {
     private Long id;
     private User users;
     private Circuit circuits;
-   
-   
-	
 	private Experiment experiment;
 
     /**

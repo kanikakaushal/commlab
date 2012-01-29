@@ -42,9 +42,7 @@ public class UserDetail extends BaseObject {
     private String city;
     private String country;
     private String college_name;
-   
-
-   
+  
 	/**
 	 * 
 	 */

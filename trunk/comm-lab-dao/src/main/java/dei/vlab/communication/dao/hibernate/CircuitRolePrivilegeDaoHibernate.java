@@ -3,8 +3,6 @@
  */
 package dei.vlab.communication.dao.hibernate;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import dei.vlab.communication.dao.CircuitRolePrivilegeDao;

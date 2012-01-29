@@ -107,6 +107,23 @@
 
 		</row>
 	</table>
+	
+	<table name="circuit_privilege">
+		<column>id</column>
+		<column>description</column>
+		<column>name</column>
+		<row>
+			<value description="id">1</value>
+			<value description="description">test1</value>
+			<value description="name">properties</value>
+			
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="description">config2</value>
+			<value description="name">properties1</value>
+	</row>
+	</table>
 
 
     <table name="user_detail">
