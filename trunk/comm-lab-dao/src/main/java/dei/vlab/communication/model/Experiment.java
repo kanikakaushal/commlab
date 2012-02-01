@@ -3,11 +3,15 @@
  */
 package dei.vlab.communication.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -25,27 +29,52 @@ public class Experiment extends BaseObject {
 	 * 
 	 */
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
-    @Column(length = 64, nullable = false)
+
     private String name;
-    @Column(length = 100, nullable = false)
+
     private String type;
-    @Column(nullable = false)
-    private String node_coordinate;
-    @Column(nullable = false)
-    private String image_file;
-    private String config_properties;
+
+    private String noceCordinate;
+
+    private String imageFile;
+
+    private String configProperties;
+    private String remark;
+
+    private Circuit circuits;
+    private User users;
+
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Circuit.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "circuit_id", referencedColumnName = "id")
+    public Circuit getCircuits() {
+        return circuits;
+    }
+
+    public void setCircuits(Circuit circuits) {
+        this.circuits = circuits;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
 
     /**
 	 * 
 	 */
-
     public Experiment() {
         // TODO Auto-generated constructor stub
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -54,6 +83,7 @@ public class Experiment extends BaseObject {
         this.id = id;
     }
 
+    @Column(length = 100, nullable = false, unique = true)
     public String getName() {
         return name;
     }
@@ -62,6 +92,7 @@ public class Experiment extends BaseObject {
         this.name = name;
     }
 
+    @Column(length = 100)
     public String getType() {
         return type;
     }
@@ -70,34 +101,45 @@ public class Experiment extends BaseObject {
         this.type = type;
     }
 
-    public String getNode_coordinate() {
-        return node_coordinate;
+    @Column(name = "node_coordinates", nullable = false)
+    public String getNoceCordinate() {
+        return noceCordinate;
     }
 
-    public void setNode_coordinate(String node_coordinate) {
-        this.node_coordinate = node_coordinate;
+    public void setNoceCordinate(String noceCordinate) {
+        this.noceCordinate = noceCordinate;
     }
 
-    public String getInmage_file() {
-        return image_file;
+    @Column(nullable = false)
+    public String getImageFile() {
+        return imageFile;
     }
 
-    public void setInmage_file(String inmage_file) {
-        this.image_file = inmage_file;
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
     }
 
-    public String getConfig_properties() {
-        return config_properties;
+    @Column(nullable = false)
+    public String getConfigProperties() {
+        return configProperties;
     }
 
-    public void setConfig_properties(String config_properties) {
-        this.config_properties = config_properties;
+    public void setConfigProperties(String configProperties) {
+        this.configProperties = configProperties;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.name).append(this.type)
-                .append(this.config_properties).toString();
+                .append(this.id).toString();
 
     }
 
@@ -110,9 +152,10 @@ public class Experiment extends BaseObject {
             return false;
         }
 
-        final Experiment exp = (Experiment) o;
+        final Experiment experiment = (Experiment) o;
 
-        return !(name != null ? !name.equals(exp.name) : exp.name != null);
+        return !(name != null ? !name.equals(experiment.name) : experiment.name != null);
+
     }
 
     @Override

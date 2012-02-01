@@ -40,7 +40,7 @@ public class User extends BaseObject implements Serializable {
     private String status; // required
     private Set<Role> roles = new HashSet<Role>();
     private UserDetail userDetail;
-         
+
     /**
      * Default constructor - creates a new instance with no values set.
      */
@@ -75,9 +75,9 @@ public class User extends BaseObject implements Serializable {
         return password;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity=UserDetail.class)
-    @JoinColumn(name="user_detail_id", referencedColumnName="id")
-     public UserDetail getUserDetail() {
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = UserDetail.class)
+    @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
+    public UserDetail getUserDetail() {
         return userDetail;
     }
 

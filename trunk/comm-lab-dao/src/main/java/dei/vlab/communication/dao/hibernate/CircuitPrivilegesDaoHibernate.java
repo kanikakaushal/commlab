@@ -36,28 +36,28 @@ public class CircuitPrivilegesDaoHibernate extends GenericDaoHibernate<CircuitPr
 
     public CircuitPrivileges findPrivilegeByName(String name) {
         List circuitPrivivalge = null;
-        circuitPrivivalge = getHibernateTemplate().find("from CircuitPrivileges where name=?",name);                     
+        circuitPrivivalge = getHibernateTemplate().find("from CircuitPrivileges where name=?", name);
         if (circuitPrivivalge.isEmpty()) {
             return null;
         }
-        return (CircuitPrivileges)circuitPrivivalge.get(0);
+        return (CircuitPrivileges) circuitPrivivalge.get(0);
     }
 
     public CircuitPrivileges findprivilegesById(Long id) {
         List circuitPrivivalgeById = null;
-        circuitPrivivalgeById = getHibernateTemplate().find("from CircuitPrivileges where id=?",id); 
-        		if (circuitPrivivalgeById.isEmpty()) {
-        			return null;
-        			}
-        		return (CircuitPrivileges)circuitPrivivalgeById.get(0);
-        		}
+        circuitPrivivalgeById = getHibernateTemplate().find("from CircuitPrivileges where id=?", id);
+        if (circuitPrivivalgeById.isEmpty()) {
+            return null;
+        }
+        return (CircuitPrivileges) circuitPrivivalgeById.get(0);
+    }
 
     public void deletPrivilegeById(Long id) {
         if (log.isDebugEnabled()) {
             log.debug("delete privilege  id: " + id);
         }
         Object delObject = getHibernateTemplate().load(CircuitPrivileges.class, id);
-        
+
         if (delObject != null) {
             getHibernateTemplate().delete(delObject);
             getHibernateTemplate().flush();
