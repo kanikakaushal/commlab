@@ -15,10 +15,11 @@ import dei.vlab.communication.model.Circuit;
 public interface CircuitDao extends GenericDao<Circuit, Long> {
 
     /*
+     * 
      * Find Circuit by id from circuit table into the database.
      */
 
-    List findCircuitById(Long id);
+    Circuit findCircuitById(Long id);
 
     /*
      * Find All list of the circuit from circuit table into the database
