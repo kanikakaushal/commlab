@@ -3,11 +3,19 @@
  */
 package dei.vlab.communication.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -20,11 +28,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Entity
 @Table(name = "circuit")
 public class Circuit extends BaseObject {
-
-    /**
-	 * 
-	 */
-    private static final long serialVersionUID = 1L;
 
     private Long id;
 
@@ -39,11 +42,34 @@ public class Circuit extends BaseObject {
     private String configProperties;
     private String remark;
 
+    private Set<Role> roles = new HashSet<Role>();
+    private CircuitPrivileges circuitPrivilege;
+
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = CircuitPrivileges.class)
+    @JoinColumn(name = "circuitPrivilege_id", referencedColumnName = "id")
+    public CircuitPrivileges getCircuitPrivilege() {
+        return circuitPrivilege;
+    }
+
+    public void setCircuitPrivilege(CircuitPrivileges circuitPrivilege) {
+        this.circuitPrivilege = circuitPrivilege;
+    }
+
     /**
 	 * 
 	 */
     public Circuit() {
         // TODO Auto-generated constructor stub
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Id

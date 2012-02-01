@@ -12,11 +12,7 @@
         <mapping class="dei.vlab.communication.model.Experiment"/>
         <mapping class="dei.vlab.communication.model.Circuit"/>
         <mapping class="dei.vlab.communication.model.CircuitPrivileges"/>
-        <mapping class="dei.vlab.communication.model.UserExperment"/>
-        <mapping class="dei.vlab.communication.model.CircuitRolePrivilege"/>
         <mapping class="dei.vlab.communication.model.UserDetail"/>
         <mapping class="dei.vlab.communication.model.Message"/>
-        
-         
     </session-factory>
 </hibernate-configuration>

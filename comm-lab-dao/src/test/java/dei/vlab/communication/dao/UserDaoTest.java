@@ -20,7 +20,6 @@ public class UserDaoTest extends BaseDaoTestCase {
     private UserDao dao;
     @Autowired
     private RolesDao rolesDao;
-  
 
     @Test
     @ExpectedException(DataAccessException.class)
@@ -30,12 +29,45 @@ public class UserDaoTest extends BaseDaoTestCase {
     }
 
     @Test
+    @Rollback(false)
+    public void testSaveUser() {
+        // login info
+        User newUser = new User();
+        newUser.setPassword("gotuam");
+        newUser.setStatus("ACTIVE");
+        newUser.setUsername("user1");
+
+        // role info
+        Role role = rolesDao.findRoleById(1l);
+        Set<Role> roles = new HashSet<Role>();
+        roles.add(role);
+        assertNotNull(role.getId());
+        newUser.setRoles(roles);
+
+        // user detail info //
+        UserDetail userDetail = new UserDetail();
+        userDetail.setFirst_name("gotuam");
+        userDetail.setLast_name("last_name");
+        userDetail.setEmail_address("gotuam@system.com");
+        userDetail.setAddress1("address1");
+        userDetail.setAddress2("address2");
+        userDetail.setStreet("street");
+        userDetail.setCity("city");
+        userDetail.setCountry("country");
+        newUser.setUserDetail(userDetail);
+        dao.save(newUser);
+        assertNotNull(newUser.getId());
+        System.out.println("user id >>>>>>>>>>>>>>>>>>" + dao.get(newUser.getId()));
+        flush();
+
+    }
+
+    @Test
     public void testGetUser() throws Exception {
         User user = dao.get(1L);
         assertNotNull(user);
     }
 
-    
     @Test
     public void testGetUserPassword() throws Exception {
         User user = dao.get(1L);
@@ -43,40 +75,5 @@ public class UserDaoTest extends BaseDaoTestCase {
         assertNotNull(password);
         log.debug("password: " + password);
     }
-    
-    @Test
-    @Rollback(false)
-    public void testSaveUser() {
-    	// login info
-    	User newUser = new User();
-     	newUser.setPassword("gotuam");
-    	newUser.setStatus("ACTIVE");
-    	newUser.setUsername("user1");
-    	
-    	//role info
-    	Role role = rolesDao.findRoleById(1l);
-     	Set<Role> roles= new HashSet<Role>();
-    	roles.add(role);
-    	assertNotNull(role.getId());
-    	newUser.setRoles(roles);
-    	
-    	// user detail info
-    	UserDetail userDetail = new UserDetail();
-    	userDetail.setFirst_name("gotuam");
-       	userDetail.setLast_name("last_name");
-       	userDetail.setEmail_address("gotuam@system.com");
-       	userDetail.setAddress1("address1");
-       	userDetail.setAddress2("address2");
-       	userDetail.setStreet("street");
-       	userDetail.setCity("city");
-       	userDetail.setCountry("country");
-    	newUser.setUserDetail(userDetail);
-    	User user =dao.saveUser(newUser);
-		assertNotNull(newUser.getId());
-		System.out.println("user id >>>>>>>>>>>>>>>>>>"+dao.get(newUser.getId()));
-		flush();
-		
-    }
-    
 
 }

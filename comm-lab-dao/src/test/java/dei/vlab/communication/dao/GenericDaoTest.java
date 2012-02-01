@@ -7,6 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +26,7 @@ public class GenericDaoTest extends BaseDaoTestCase {
     }
 
     @Test
+    @Ignore
     public void getUser() {
         User user = genericDao.get(1L);
         
