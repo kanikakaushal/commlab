@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.commlab.gwt.commlab'/>
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/client/greet" class="com.commlab.gwt.server.GreetingServiceImpl" />
+
+</module>
