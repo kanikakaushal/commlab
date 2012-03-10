@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.allen_sauer.gwt.log</groupId>
+  <artifactId>gwt-log</artifactId>
+  <version>3.1.2</version>
+  <versioning>
+    <versions>
+      <version>3.1.2</version>
+    </versions>
+    <lastUpdated>20111229181113</lastUpdated>
+  </versioning>
+</metadata>
