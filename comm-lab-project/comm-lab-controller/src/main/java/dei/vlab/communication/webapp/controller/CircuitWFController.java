@@ -46,14 +46,16 @@ public class CircuitWFController  implements ServletContextAware{
 	public @ResponseBody
 	List<CircuitData> listCircuits(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println(">>>>>>>>>>>>>>"+circuitManager);
+		System.out.println("circuit data frist >>>>>>>>>>>>>>"+circuitManager);
 		 List<Circuit> circuits =circuitManager.getALL();
 		List<CircuitData> circuitDatas = new ArrayList<CircuitData>();
+                System.out.println("circuit datas Second >>>>>>>>>>>>>>"+circuits);
 		if(circuits!=null && !circuits.isEmpty()){
 			for(Circuit circuit:circuits){
 				circuitDatas.add(CircuitData.populate(circuit));
 			}
 		}
+                 System.out.println("circuit data Thred >>>>>>>>>>>>>>"+circuitDatas);
 		return circuitDatas;
 	}
 	
@@ -85,8 +87,7 @@ public class CircuitWFController  implements ServletContextAware{
 				HttpServletRequest request,HttpServletResponse response) throws IOException, Exception {
 		     String uploadDir = getServletContext().getRealPath("/resources")+"/";
 		     System.out.println(">>>>>>>>>>>>>>"+image+">>>>>>>"+circuitName);
-		// the directory to upload to
-   
+        // the directory to upload to
         // Create the directory if it doesn't exist
         File dirPath = new File(uploadDir);
         if (!dirPath.exists()) {
@@ -99,13 +100,10 @@ public class CircuitWFController  implements ServletContextAware{
         OutputStream bos = new FileOutputStream(uploadDir + image.getOriginalFilename());
         int bytesRead;
         byte[] buffer = new byte[8192];
-
         while ((bytesRead = stream.read(buffer, 0, 8192)) != -1) {
             bos.write(buffer, 0, bytesRead);
         }
-
         bos.close();
-
         //close the stream
         stream.close();
 		Circuit circuit=circuitManager.getCircuitByName(circuitName);

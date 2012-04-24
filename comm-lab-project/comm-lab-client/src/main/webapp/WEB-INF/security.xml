@@ -20,6 +20,9 @@
         <intercept-url pattern="/app/circuit*" access="ROLE_ADMIN,ROLE_USER"/>
          <intercept-url pattern="/app/imageUploadRest*" access="ROLE_ADMIN,ROLE_USER"/>
          
+         <!-- Calendar Work Flow -->
+         <intercept-url pattern="/app/calendar*" access="ROLE_ADMIN,ROLE_USER"/>
+         
         <!-- Application  -->         
         <intercept-url pattern="/app/resetpass*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
         <intercept-url pattern="/app/start*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>

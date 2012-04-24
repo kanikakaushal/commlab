@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-
-    <table name="user_detail">
+   <table name="user_detail">
         <column>id</column>
         <column>first_name</column>
         <column>last_name</column>
@@ -41,7 +40,6 @@
         </row>
     </table>
 
-
     <table name="user">
         <column>id</column>
         <column>username</column>
@@ -54,19 +52,20 @@
             <value description="username">user</value>
             <value description="password">12dea96fec20593566ab75692c9949596833adc9
             </value>
-            <value description="status">approved</value>
+            <value description="status">active</value>
             <value description="user_detail_id">1</value>
-            <value description="version">1</value>
+                       <value description="version">1</value>
+ 
         </row>
         <row>
             <value description="id">2</value>
             <value description="username">admin</value>
             <value description="password">d033e22ae348aeb5660fc2140aec35850c4da997
             </value>
-            <value description="status">approved</value>
+            <value description="status">active</value>
              <value description="user_detail_id">2</value>
-            <value description="version">1</value>
-        </row>
+           <value description="version">1</value>
+         </row>
     </table>
     <table name="role">
         <column>id</column>
@@ -81,12 +80,12 @@
         </row>
         <row>
             <value description="id">2</value>
-            <value description="type">USER</value>
             <value description="name">ROLE_BEGINNER</value>
+            <value description="type">USER</value>
             <value description="description"><![CDATA[Beginner Role for Users]]></value>
         </row>
     </table>
-    <table name="user_role">
+     <table name="user_role">
         <column>user_id</column>
         <column>roles_id</column>
         <row>
@@ -98,6 +97,27 @@
             <value description="roles_id">1</value>
         </row>
     </table>
- 
+<table name="calendar">
+        <column>id</column>
+        <column>description</column>
+        <column>endTime</column>
+        <column>name</column>
+        <column>startTime</column>
+        <row>
+            <value description="id">3</value>
+            <value description="description">add3</value>
+            <value description="endTime">2012-04-17 08:15:00.0</value>
+             <value description="name">test3</value>
+            <value description="startTime">2012-04-17 08:15:00.0</value>
+        </row>
+        <row>
+            <value description="id">4</value>
+            <value description="description">add4</value>
+            <value description="endTime">2012-04-17 08:15:00.0</value>
+             <value description="name">test4</value>
+            <value description="startTime">2012-04-17 08:15:00.0</value>
+        </row>
+    </table>
 
+ 
 </dataset>

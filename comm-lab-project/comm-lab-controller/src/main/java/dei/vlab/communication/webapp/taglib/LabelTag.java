@@ -251,6 +251,7 @@ public class LabelTag extends TagSupport {
     /**
      * Use the application context itself for default message resolution.
      */
+    
     private MessageSource getMessageSource() {
         return requestContext.getWebApplicationContext();
     }

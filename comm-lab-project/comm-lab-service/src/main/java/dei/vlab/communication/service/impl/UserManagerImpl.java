@@ -29,7 +29,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
 		this.roleDao = roleDao;
 	}
 
-	@Autowired
+    @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }

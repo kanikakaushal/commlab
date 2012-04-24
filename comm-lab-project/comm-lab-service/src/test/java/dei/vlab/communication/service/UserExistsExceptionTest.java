@@ -28,9 +28,9 @@ public class UserExistsExceptionTest extends AbstractTransactionalJUnit4SpringCo
     @Test
     @ExpectedException(UserExistsException.class)
     public void testAddExistingUser() throws Exception {
+        
         log.debug("entered 'testAddExistingUser' method");
         assertNotNull(manager);
-
         User user = manager.getUser("1");
         
         // create new object with null id - Hibernate doesn't like setId(null)
@@ -38,8 +38,8 @@ public class UserExistsExceptionTest extends AbstractTransactionalJUnit4SpringCo
         BeanUtils.copyProperties(user, user2);
         user2.setId(null);
         user2.setRoles(null);
-        
         // try saving as new user, this should fail UserExistsException b/c of unique keys
+        
         manager.saveUser(user2);
     }    
 }

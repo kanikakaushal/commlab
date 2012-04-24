@@ -19,6 +19,7 @@ import org.springmodules.validation.commons.FieldChecks;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public class ValidationUtil {
+    
     //~ Methods ================================================================
 
     /**
