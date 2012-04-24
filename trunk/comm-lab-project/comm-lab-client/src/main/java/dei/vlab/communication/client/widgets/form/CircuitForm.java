@@ -45,6 +45,7 @@ public class CircuitForm extends AbstractGridForm {
 				propertyIdItem.setValue(getFormField("name").getDisplayValue());
 				uploadForm.submitForm();
 				saveFormData();
+                                
 				saveButton.disable();
 				newButton.enable();
 				String imgPath=fileItem.getDisplayValue();
@@ -76,7 +77,6 @@ public class CircuitForm extends AbstractGridForm {
 		});
 	*/	
 		saveButton.disable();
-		
 		addButton(newButton);
 		addButton(saveButton);
 	}

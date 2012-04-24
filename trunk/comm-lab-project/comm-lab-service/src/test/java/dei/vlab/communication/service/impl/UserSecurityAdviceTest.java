@@ -1,6 +1,4 @@
 package dei.vlab.communication.service.impl;
-
-
 import dei.vlab.communication.Constants;
 import dei.vlab.communication.dao.UserDao;
 import dei.vlab.communication.model.Role;
@@ -50,16 +48,16 @@ public class UserSecurityAdviceTest {
         System.out.println("user.getAuthorities()"+user.getAuthorities());
 
         UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
+        new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
         token.setDetails(user);
         context.setAuthentication(token);
         SecurityContextHolder.setContext(context);
     }
 
 	private Role getUserRole() {
-		Role role =new Role(Role.ROLE_BEGINNER);
+	Role role =new Role(Role.ROLE_BEGINNER);
         role.setType(Role.USER_TYPE_USER);
-		return role;
+	return role;
 	}
 
     @After
@@ -110,7 +108,6 @@ public class UserSecurityAdviceTest {
 
         userManager.saveUser(adminUser);
     }
-
 	private Role getAdminRole() {
 		Role role= new Role(Role.ROLE_ADMIN);
 		role.setType(Role.USER_TYPE_ADMIN);
@@ -124,7 +121,6 @@ public class UserSecurityAdviceTest {
         user.setStatus(User.STATUS_APPROVED);
        // user.setId(1L);
         user.getRoles().add(getUserRole());
-
         context.checking(new Expectations() {{
             one(userDao).saveUser(with(same(user)));
         }});

@@ -41,6 +41,7 @@ public class UserManagerTest extends BaseManagerTestCase {
 
     @Test
     public void testAddAndRemoveUser() throws Exception {
+        
         user = new User();
 
         // call populate method in super class to populate test data

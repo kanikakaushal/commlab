@@ -97,7 +97,6 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
 	public String toString() {
 		return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
 		.append(getAuthority()).toString();
-
 	}
 
 	@Override

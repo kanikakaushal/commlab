@@ -2,7 +2,6 @@ package dei.vlab.communication.client.handler;
 
 import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
-
 import dei.vlab.communication.client.widgets.PageBody;
 
 public class CalandarToolClickHandler implements RecordClickHandler{

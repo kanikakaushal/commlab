@@ -21,7 +21,6 @@ public class CalanderNavigator extends VLayout{
 	           // blurbItem.setValue("Selected date : " + dateChooser.getData());  
 	        }  
 	    });  
-
 	    this.addMember(dateChooser); 
 	    this.addMember(form);
 	}

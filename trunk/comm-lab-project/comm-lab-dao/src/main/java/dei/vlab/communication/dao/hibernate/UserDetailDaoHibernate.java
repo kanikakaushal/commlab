@@ -24,7 +24,6 @@ public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long
             return null;
         }
         return (UserDetail) user.get(0);
-
     }
 
     public UserDetail findeUserDetailByFirstName(String name) {
@@ -61,5 +60,4 @@ public class UserDetailDaoHibernate extends GenericDaoHibernate<UserDetail, Long
         getHibernateTemplate().saveOrUpdate(userDetail);
         return userDetail;
     }
-
 }

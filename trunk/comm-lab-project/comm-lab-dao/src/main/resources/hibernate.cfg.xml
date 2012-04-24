@@ -11,7 +11,9 @@
 		<mapping class="dei.vlab.communication.model.User" />
 		<mapping class="dei.vlab.communication.model.Role" />
 		<mapping class="dei.vlab.communication.model.UserDetail" />
-        <mapping class="dei.vlab.communication.model.Circuit" />
+                <mapping class="dei.vlab.communication.model.Circuit" />
+                <mapping class="dei.vlab.communication.model.Calendarr" />
+        
     <!--     <mapping class="dei.vlab.communication.model.CircuitPrivileges" /> -->
      
 	</session-factory>

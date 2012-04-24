@@ -14,13 +14,13 @@
 
     <!-- Advice Class -->
     <bean id="userSecurityAdvice" class="dei.vlab.communication.service.UserSecurityAdvice"/>
-
+    
     <bean id="userManager" class="dei.vlab.communication.service.impl.UserManagerImpl">
         <property name="passwordEncoder">
             <bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/>
         </property>
     </bean>
-
+       
     <bean id="target" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="proxyInterfaces" value="dei.vlab.communication.service.UserManager"/>
         <property name="interceptorNames">
