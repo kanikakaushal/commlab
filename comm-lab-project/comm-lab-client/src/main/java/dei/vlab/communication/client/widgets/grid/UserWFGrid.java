@@ -38,7 +38,7 @@ public class UserWFGrid extends ListGrid {
 		ListGridField cNameField = new ListGridField("college", "College Name");
 		ListGridField contactNoField = new ListGridField("contactNo", "Contact No");
 		ListGridField actionField = new ListGridField("actions", "Actions");
-		//this.setFields(noField, statusField, emailField, fNameField,cNameField,contactNoField, actionField);
+		this.setFields(noField, statusField, emailField, fNameField,cNameField,contactNoField, actionField);
                 this.setCanRemoveRecords(false);
 		this.setDataSource(UserWFActionDataSource.getInstance());
 		this.setAutoFetchData(true);
