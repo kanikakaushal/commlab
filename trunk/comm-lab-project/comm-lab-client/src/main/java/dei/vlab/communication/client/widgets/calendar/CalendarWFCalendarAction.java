@@ -42,21 +42,12 @@ public class CalendarWFCalendarAction extends Calendar{
     public CalendarWFCalendarAction() {
                 
                 this.setMargin(15);
-		eventDS = new DataSource();
-		DataSourceSequenceField eventIdField = new DataSourceSequenceField(
-				"eventId");
-		eventIdField.setPrimaryKey(true);
-		DataSourceTextField nameField = new DataSourceTextField("name");
-		DataSourceTextField descField = new DataSourceTextField("description");
-		DataSourceDateTimeField startDateField = new DataSourceDateTimeField(
-				"startDate");
-		DataSourceDateTimeField endDateField = new DataSourceDateTimeField(
-				"endDate");
-		eventDS.setFields(eventIdField, nameField, descField, startDateField,
-				endDateField);
-		eventDS.setClientOnly(true);
-		eventDS.setTestData(CalendarData.getRecords());
-                doRequestWrapper();
+		
+		//eventDS.setFields(eventIdField, nameField, descField, startDateField,
+				//endDateField);
+		//eventDS.setClientOnly(true);
+		//eventDS.setTestData(CalendarData.getRecords());
+                //doRequestWrapper();
                 this.addEventAddedHandler(new EventAddedHandler() {
                 public void onEventAdded(CalendarEventAdded event) {      
                     calendarEvents =  event.getEvent();
@@ -111,15 +102,15 @@ public class CalendarWFCalendarAction extends Calendar{
                     endDate = calendarEvents.getEndDate();
                     eventId = calendarEvents.getEventId();
                     SC.say("messge name "+name+"");
+                   
             }
         });
-		this.setDataSource(eventDS);
+		this.setDataSource(CalendarWFActionDataSource.getInstance());
 		this.setAutoFetchData(true);
     }
 	 public void doRequestWrapper(){
 		 		String url ="/app/calendar";
                                 String response =HttpRequestUtil.doGetRequest(url);
-                                eventDS.fetchData();
-                                        
+                                eventDS.fetchData();                             
 	 }      	
 }

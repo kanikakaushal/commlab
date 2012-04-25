@@ -37,23 +37,24 @@ public class CalendarWFActionDataSource extends AbstractRestDataSource{
         
                 setDataFormat(DSDataFormat.JSON);
                 setJsonRecordXPath("/");
-                
-                DataSource eventDS = new DataSource();  
-                DataSourceSequenceField eventIdField = new DataSourceSequenceField("eventId");  
-                eventIdField.setPrimaryKey(true);  
 
+                DataSourceField idField = new DataSourceField("id", FieldType.INTEGER, "ID");
+                idField.setPrimaryKey(Boolean.TRUE);
+                idField.setCanEdit(Boolean.FALSE);
+                
+              
                 DataSourceTextField nameField = new DataSourceTextField("name");  
                 DataSourceTextField descField = new DataSourceTextField("description");  
                 DataSourceDateTimeField startDateField = new DataSourceDateTimeField("startDate");  
                 DataSourceDateTimeField endDateField = new DataSourceDateTimeField("endDate");  
 
-                eventDS.setFields(eventIdField, nameField, descField, startDateField, endDateField);  
-                eventDS.setClientOnly(true);  
-                eventDS.setTestData(CalendarData.getRecords());  
+                setFields(idField, nameField, descField, startDateField, endDateField);  
+               // eventDS.setClientOnly(true);  
+                setTestData(CalendarData.getRecords());  
 
-                Calendar calendar = new Calendar();  
-                calendar.setDataSource(eventDS);  
-                calendar.setAutoFetchData(true);  
+                
+               // calendar.setDataSource(eventDS);  
+               // calendar.setAutoFetchData(true);  
 		
                 
 	}
