@@ -28,7 +28,6 @@ public class Application implements EntryPoint, HistoryListener {
 					URL.encode(GWT.getHostPageBaseURL() + "/app/userinfo"));
 			String requestData = null;
 			builder.sendRequest(requestData, new RequestCallback() {
-				@Override
 				public void onResponseReceived(Request request,
 						Response response) {
 					if (200 == response.getStatusCode()) {
@@ -48,7 +47,6 @@ public class Application implements EntryPoint, HistoryListener {
 
 				}
 
-				@Override
 				public void onError(Request request, Throwable exception) {
 					// TODO Auto-generated method stub
 					requestFailed(exception);
@@ -64,7 +62,6 @@ public class Application implements EntryPoint, HistoryListener {
 		Window.alert("Failed to get login information");
 	}
 
-	@Override
 	public void onHistoryChanged(String arg0) {
 		// TODO Auto-generated method stub
 

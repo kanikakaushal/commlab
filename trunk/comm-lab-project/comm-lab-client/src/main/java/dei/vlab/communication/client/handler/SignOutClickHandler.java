@@ -8,7 +8,7 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 public class SignOutClickHandler implements ClickHandler{
 	public static final String SIGNOUT_URL="app/logout";
 
-	@Override
+	
 	public void onClick(ClickEvent event) {
 		Window.Location
 		.assign(SIGNOUT_URL);

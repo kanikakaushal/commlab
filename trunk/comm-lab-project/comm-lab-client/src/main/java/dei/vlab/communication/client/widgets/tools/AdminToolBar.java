@@ -33,7 +33,6 @@ public class AdminToolBar extends TileGrid  {
 
 		this.addRecordClickHandler(new RecordClickHandler() {
 
-			@Override
 			public void onRecordClick(
 					com.smartgwt.client.widgets.tile.events.RecordClickEvent event) {
 				String msg = event.getRecord().getAttribute("name");

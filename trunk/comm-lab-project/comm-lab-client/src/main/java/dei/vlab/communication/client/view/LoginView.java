@@ -66,7 +66,7 @@ public class LoginView extends Composite {
 		register_button.setText("Register");
 		forgotPass.addClickHandler(new ClickHandler() {
 			
-			@Override
+			
 			public void onClick(ClickEvent arg0) {
 				if(getUserNameValue()!=null){
 					
@@ -76,7 +76,7 @@ public class LoginView extends Composite {
 					try {
 						builder.sendRequest(requestData, new RequestCallback() {
 							
-							@Override
+							
 						
 							public void onResponseReceived(Request request,
 									Response response) {
@@ -99,7 +99,7 @@ public class LoginView extends Composite {
 
 							}
 
-							@Override
+							
 							public void onError(Request arg0, Throwable arg1) {
 								showForgotPass("Sorry, Your request could not be completed. please try later.");
 								

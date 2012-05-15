@@ -99,7 +99,6 @@ public class PageHeader extends ToolStrip {
 		this.addMember(this.signOutButton);
 		this.accountButton.addClickHandler(new ClickHandler() {
 			
-			@Override
 			public void onClick(ClickEvent event) {
 				accountForm.fetchData();
 				accountForm.show();

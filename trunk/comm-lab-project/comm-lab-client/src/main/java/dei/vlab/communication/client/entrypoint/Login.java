@@ -51,7 +51,7 @@ public class Login implements EntryPoint, HistoryListener {
 	
 
 
-	@Override
+	
 	public void onHistoryChanged(String arg0) {
 		//do nothings
 		

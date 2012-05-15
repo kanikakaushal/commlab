@@ -39,7 +39,7 @@ public class UserWFGrid extends ListGrid {
 		ListGridField contactNoField = new ListGridField("contactNo", "Contact No");
 		ListGridField actionField = new ListGridField("actions", "Actions");
 		this.setFields(noField, statusField, emailField, fNameField,cNameField,contactNoField, actionField);
-                this.setCanRemoveRecords(false);
+	    this.setCanRemoveRecords(false);
 		this.setDataSource(UserWFActionDataSource.getInstance());
 		this.setAutoFetchData(true);
 		this.setGroupByField("status");
@@ -61,7 +61,7 @@ public class UserWFGrid extends ListGrid {
        
              ToolStripButton approveButton = new ToolStripButton();  
              approveButton.setIcon("icons/16/approved.png");  
-             approveButton.setTooltip("Approve"); 
+            approveButton.setTooltip("Approve"); 
              approveButton.addClickHandler(new ClickHandler() {  
                  public void onClick(ClickEvent event) {  
                  	 	 doRequestWrapper(record.getAttribute("id"), "Approved");
@@ -105,7 +105,7 @@ public class UserWFGrid extends ListGrid {
          }  
 
      }  
-	
+	 
 	 public void doRequestWrapper(String id, String status){
 		 		String url ="/app/userwfactionupdate?id="+id+"&status="+status;
 					String response =HttpRequestUtil.doGetRequest(url);

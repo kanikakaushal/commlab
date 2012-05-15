@@ -36,7 +36,6 @@ public class AdminPageBuilder  implements PageBuilder{
 		return this.body;
 	}
 
-	@Override
 	public Widget buildFooter() {
 		// TODO Auto-generated method stub
 		return this.footer;
