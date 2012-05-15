@@ -20,19 +20,19 @@ public class HttpRequestUtil {
 		try {
 			builder.sendRequest(requestData, new RequestCallback() {
 
-				@Override
 				public void onResponseReceived(Request request,
 						Response response) {
 						responseText = response.getText();
 					if (200 != response.getStatusCode()) {
 						SC.say("Sorry, we could not complete your request at this time.");
 					}
+
 				}
 
-				@Override
 				public void onError(Request request, Throwable exception) {
 					SC.say("Sorry, we could not complete your request at this time.");
 				}
+
 			});
 		} catch (RequestException e) {
 			SC.say("Sorry, we could not complete your request at this time.");

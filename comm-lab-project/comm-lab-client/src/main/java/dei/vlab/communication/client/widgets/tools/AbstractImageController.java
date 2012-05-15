@@ -1,8 +1,8 @@
 package dei.vlab.communication.client.widgets.tools;
 
 import com.google.gwt.user.client.ui.Widget;
-import com.orange.links.client.DiagramController;
-import com.smartgwt.client.widgets.Img;
+
+import dei.vlab.communication.client.contoller.DiagramController;
 
 public abstract class AbstractImageController {
 protected DiagramController controller;

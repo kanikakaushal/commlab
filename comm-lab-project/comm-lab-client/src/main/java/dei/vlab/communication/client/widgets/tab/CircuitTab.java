@@ -1,6 +1,6 @@
 package dei.vlab.communication.client.widgets.tab;
 
-import dei.vlab.communication.client.widgets.form.CircuitForm;
+import dei.vlab.communication.client.widgets.form.CircuitGridWindow;
 
 public class CircuitTab extends AbstractTab {
 	public static String CIRCUIT_TAB_ID = "CIRCUIT_TAB_ID";
@@ -8,7 +8,7 @@ public class CircuitTab extends AbstractTab {
 	public static String CIRCUIT_ICON = "tools/welcome.jpg";
 
 
-	private CircuitForm circuitForm;
+	private CircuitGridWindow circuitForm;
 
 	public CircuitTab() {
 		super(CIRCUIT_TAB_ID);
@@ -16,11 +16,11 @@ public class CircuitTab extends AbstractTab {
 		setIcon(CIRCUIT_ICON, 16);
 		setTabHeight100();
 		setTabWidth100();
-		this.circuitForm = new CircuitForm();
+		this.circuitForm = new CircuitGridWindow();
 		addTabMember(circuitForm);
 	}
 
-	public CircuitForm getCircuitForm() {
+	public CircuitGridWindow getCircuitForm() {
 		return circuitForm;
 	}
 }

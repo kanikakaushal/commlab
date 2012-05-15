@@ -27,7 +27,8 @@ public class AccountDataSource extends AbstractRestDataSource {
 		setDataFormat(DSDataFormat.JSON);
 		setJsonRecordXPath("/");
 
-		DataSourceField idField = new DataSourceField("id", FieldType.INTEGER,"ID");
+		DataSourceField idField = new DataSourceField("id", FieldType.INTEGER,
+				"ID");
 		idField.setPrimaryKey(true);
 		idField.setCanEdit(false);
 		
@@ -42,14 +43,15 @@ public class AccountDataSource extends AbstractRestDataSource {
 		DataSourceField contactNoField = getTextFieldRequired("contactNo", "Contact No", 12);
 		DataSourceField emailField = getTextFieldRequired("email", "Email", 100);
 		
-		MaskValidator maskValidator = new MaskValidator();  
+		 MaskValidator maskValidator = new MaskValidator();  
 	        maskValidator.setMask("^\\s*(1?)\\s*\\(?\\s*(\\d{3})\\s*\\)?\\s*-?\\s*(\\d{3})\\s*-?\\s*(\\d{4})\\s*$");  
 	        maskValidator.setTransformTo("$1($2) $3 - $4");  
 	        contactNoField.setValidators(maskValidator);
 	        
 		RegExpValidator emailValidator = new RegExpValidator();
 		emailValidator.setErrorMessage("Invalid email address");
-		emailValidator.setExpression("^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$"
+		emailValidator.setExpression(
+				"^([a-zA-Z0-9_.\\-+])+@(([a-zA-Z0-9\\-])+\\.)+[a-zA-Z0-9]{2,4}$"
 				);
 
 		emailField.setValidators(emailValidator);

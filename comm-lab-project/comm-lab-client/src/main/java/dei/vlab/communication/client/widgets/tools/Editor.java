@@ -2,8 +2,12 @@ package dei.vlab.communication.client.widgets.tools;
 
 import java.util.LinkedHashMap;
 
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -18,11 +22,14 @@ import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
 
+import dei.vlab.communication.client.contoller.CircuitMapperContoller;
+import dei.vlab.communication.client.contoller.ExpermentController;
 import dei.vlab.communication.client.event.EditorEvent;
 import dei.vlab.communication.client.handler.EditorEventHandler;
 
-public class Editor extends TabSet implements EditorEventHandler{
+public class Editor extends TabSet implements EditorEventHandler {
 	public HLayout mainPanel;
+
 	public Editor() {
 
 		Layout paneContainerProperties = new Layout();
@@ -97,10 +104,10 @@ public class Editor extends TabSet implements EditorEventHandler{
 		tab.setID(name);
 		tab.setIcon("icons/16/workspace.png", 16);
 		tab.setWidth(80);
+		mainPanel.addChild(createExpermantPanel(mainPanel.getWidth(),mainPanel.getHeight()));
 		tab.setPane(mainPanel);
 		this.addTab(tab);
 		this.selectTab(name);
-
 	}
 
 	public void createTab(String name, String icon) {
@@ -116,21 +123,43 @@ public class Editor extends TabSet implements EditorEventHandler{
 	}
 
 	public void addEditorTab(Tab tab) {
-		if(tab!=null){
-			if(this.getTab(tab.getID())==null){
-			this.addTab(tab);
+		if (tab != null) {
+			if (this.getTab(tab.getID()) == null) {
+				this.addTab(tab);
 			}
-		this.selectTab(tab.getID());
-		}else{
+			this.selectTab(tab.getID());
+		} else {
 			SC.warn("Can't set blank tab");
 		}
 
 	}
 
-	@Override
 	public void openTab(EditorEvent event) {
 		addEditorTab(event.getTab());
-		
+
 	}
-	
+
+	private VerticalPanel createExpermantPanel(int width,int height) {
+		HorizontalPanel expermentLayout = new HorizontalPanel();
+		VerticalPanel mainPanel = new VerticalPanel();
+		ExpermentController currentController = null;
+		expermentLayout = new HorizontalPanel();
+		mainPanel.add(expermentLayout);
+		ExpermentPanel expermentPanel = new ExpermentPanel();
+		if (currentController != null) {
+			currentController.clearDiagram();
+		} else {
+			// Create the drawing zone
+			currentController = new ExpermentController(width, height);
+		}
+		// currentController.showImage(image);
+		expermentPanel.setDiagramController(currentController);
+		Widget w = expermentPanel.asWidget();
+		w.getElement().getStyle().setMargin(10, Unit.PX);
+		w.getElement().getStyle().setProperty("border", "1px solid #cccccc");
+		expermentLayout.insert(w, 0);
+		mainPanel.setVisible(true);
+		return mainPanel;
+	}
+
 }

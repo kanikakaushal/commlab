@@ -4,13 +4,11 @@ import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.fields.DataSourceDateTimeField;
 import com.smartgwt.client.data.fields.DataSourceSequenceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.smartgwt.client.docs.CalendarEvent;
 import com.smartgwt.client.widgets.calendar.Calendar;
 import com.smartgwt.client.widgets.calendar.events.CalendarEventAdded;
 import com.smartgwt.client.widgets.calendar.events.EventAddedHandler;
 
-
-import dei.vlab.communication.client.widgets.calendar.CalendarWFCalendarAction;
+import dei.vlab.communication.client.data.CalendarData;
 
 public class CalendarTab extends AbstractTab {
 
@@ -20,9 +18,6 @@ public class CalendarTab extends AbstractTab {
 	public static String CALENDER_ICON = "tools/CALANDER.png";
 	
 	private Calendar calendar = new Calendar();
-        private CalendarWFCalendarAction calendarWFCalendarAction;
-
-    
 
 	public CalendarTab() {
 		super(CALENDER_TAB_ID);
@@ -30,13 +25,28 @@ public class CalendarTab extends AbstractTab {
 		setIcon(CALENDER_ICON, 16);
 		setTabHeight100();
 		setTabWidth100();
-		this.calendarWFCalendarAction = new CalendarWFCalendarAction();
-		addTabMember(calendarWFCalendarAction);
-
+		init();
+		addTabMember(calendar);
+	
 	}
-	 public CalendarWFCalendarAction getCalendarWFCalendarAction() {
-            return calendarWFCalendarAction;
-         }
-      
+	private void init() {
+		calendar.setMargin(15);
+		DataSource eventDS = new DataSource();
+		DataSourceSequenceField eventIdField = new DataSourceSequenceField(
+				"eventId");
+		eventIdField.setPrimaryKey(true);
+		DataSourceTextField nameField = new DataSourceTextField("name");
+		DataSourceTextField descField = new DataSourceTextField("description");
+		DataSourceDateTimeField startDateField = new DataSourceDateTimeField(
+				"startDate");
+		DataSourceDateTimeField endDateField = new DataSourceDateTimeField(
+				"endDate");
+		eventDS.setFields(eventIdField, nameField, descField, startDateField,
+				endDateField);
+		eventDS.setClientOnly(true);
+		eventDS.setTestData(CalendarData.getRecords());
+		calendar.setDataSource(eventDS);
+		calendar.setAutoFetchData(true);
+	}
 
 }

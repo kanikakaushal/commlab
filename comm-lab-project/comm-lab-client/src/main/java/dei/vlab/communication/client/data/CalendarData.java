@@ -1,19 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dei.vlab.communication.client.data;
 
-import com.smartgwt.client.widgets.calendar.CalendarEvent;
 import java.util.Date;
 
-/**
- *
- * @author server
- */
-public class CalendarData {  
-  
-    private static CalendarEvent[] records;  
+import com.smartgwt.client.widgets.calendar.CalendarEvent;
+
+public class CalendarData {
+	private static CalendarEvent[] records;  
     private static Date today = new Date();  
     private static int year = today.getYear();  
     private static int month = today.getMonth();  

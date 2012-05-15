@@ -1,7 +1,6 @@
 package dei.vlab.communication.client.data;
 
 import com.google.gwt.core.client.GWT;
-import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.types.DSDataFormat;
 import com.smartgwt.client.types.FieldType;
@@ -31,15 +30,15 @@ public class CircuitDataSource extends AbstractRestDataSource {
 				"ID");
 		idField.setPrimaryKey(true);
 		idField.setCanEdit(false);
-                DataSourceField nameField = new  DataSourceField("name", FieldType.TEXT, "Name");
-                DataSourceField typeField = new DataSourceField("type", FieldType.TEXT, "Type");
-                DataSourceField descriptionField = new DataSourceField("description", FieldType.TEXT, "Description");
-/*
-		DataSourceField nameField = new  DataSourceField("name", FieldType.TEXT, 50);
-		DataSourceField typeField = new DataSourceField("type", FieldType.TEXT, 50);
-		DataSourceField descriptionField = new DataSourceField("description",FieldType.TEXT, 500);
-*/
-		setFields(nameField, typeField, descriptionField);
+
+		DataSourceField nameField = getTextFieldRequired("name", "Name", 50);
+		DataSourceField typeField = getTextFieldRequired("type", "Level", 50);
+		DataSourceField descriptionField = getTextFieldRequired("description",
+				"Description", 500);
+		
+		DataSourceField imageField = getTextFieldRequired("image", "Image", 50);
+				
+		setFields(imageField,nameField, typeField, descriptionField);
 
 	}
 
@@ -53,5 +52,6 @@ public class CircuitDataSource extends AbstractRestDataSource {
 		return GWT.getHostPageBaseURL() + "app/circuit";
 	}
 
-    
+	
+	
 }

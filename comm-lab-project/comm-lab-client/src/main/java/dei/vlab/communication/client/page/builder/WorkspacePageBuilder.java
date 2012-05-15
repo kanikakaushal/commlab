@@ -37,7 +37,6 @@ public class WorkspacePageBuilder implements PageBuilder {
 		return this.body;
 	}
 
-	@Override
 	public Widget buildFooter() {
 		// TODO Auto-generated method stub
 		return this.footer;

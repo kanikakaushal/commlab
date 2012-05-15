@@ -5,7 +5,7 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 
 public class Switch2WSClickHandler implements ClickHandler{
 
-	@Override
+	
 	public void onClick(ClickEvent event) {
 	}
 }
