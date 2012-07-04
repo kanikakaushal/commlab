@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.mail.Multipart;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import dei.vlab.communication.model.Circuit;
 
@@ -14,14 +15,9 @@ public class CircuitData implements Serializable {
 	private String name;
 	private String description;
 	private String type;
-	private String coordinates;
-	private String imageName;
-	public String getImageName() {
-		return imageName;
-	}
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
-	}
+	private String image;
+	private String nodeData;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -46,11 +42,17 @@ public class CircuitData implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getCoordinates() {
-		return coordinates;
+	public String getImage() {
+		return image;
 	}
-	public void setCoordinates(String coordinates) {
-		this.coordinates = coordinates;
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getNodeData() {
+		return nodeData;
+	}
+	public void setNodeData(String nodeData) {
+		this.nodeData = nodeData;
 	}
 	/**
 	 * Constructs a <code>String</code> with all attributes
@@ -71,8 +73,7 @@ public class CircuitData implements Serializable {
 	        + "name = " + this.name + TAB
 	        + "description = " + this.description + TAB
 	        + "type = " + this.type + TAB
-	        + "image = " + this.imageName + TAB
-	        + "coordinates = " + this.coordinates + TAB
+	        + "image = " + this.image + TAB
 	        + " )";
 	
 	    return retValue;
@@ -84,8 +85,8 @@ public class CircuitData implements Serializable {
 		circuitData.setName(circuit.getName());
 		circuitData.setType(circuit.getType());
 		circuitData.setDescription(circuit.getDescription());
-		circuitData.setCoordinates(circuit.getNoceCordinate());
-		circuitData.setImageName(circuit.getImageFile());
+		circuitData.setImage(circuit.getImageFile());
+		circuitData.setNodeData(circuit.getNoceCordinate());
 		return circuitData;
 	}
 	
