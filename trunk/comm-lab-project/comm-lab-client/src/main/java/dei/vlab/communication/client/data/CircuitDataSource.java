@@ -3,7 +3,9 @@ package dei.vlab.communication.client.data;
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.types.DSDataFormat;
+import com.smartgwt.client.types.Encoding;
 import com.smartgwt.client.types.FieldType;
+import com.smartgwt.client.widgets.form.fields.HiddenItem;
 import com.smartgwt.client.widgets.form.fields.UploadItem;
 
 public class CircuitDataSource extends AbstractRestDataSource {
@@ -37,8 +39,9 @@ public class CircuitDataSource extends AbstractRestDataSource {
 				"Description", 500);
 		
 		DataSourceField imageField = getTextFieldRequired("image", "Image", 50);
-				
-		setFields(imageField,nameField, typeField, descriptionField);
+		DataSourceField nodeDataField = getTextFieldRequired("nodeData", "NodeData", 50);
+					
+		setFields(imageField,nameField, typeField, descriptionField,nodeDataField);
 
 	}
 

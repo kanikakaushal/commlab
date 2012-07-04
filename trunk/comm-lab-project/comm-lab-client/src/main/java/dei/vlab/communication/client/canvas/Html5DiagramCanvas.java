@@ -25,11 +25,11 @@ public class Html5DiagramCanvas implements DiagramCanvas{
 		this.width = width;
 		this.height = height;
 		setBackground();
-		canvas.getElement().getStyle().setPosition(Position.ABSOLUTE);
+		//canvas.getElement().getStyle().setPosition(Position.RELATIVE);
 		canvas.setHeight(this.height + "px");
 		canvas.setWidth(this.width + "px");
-		canvas.setCoordinateSpaceHeight(height);
-		canvas.setCoordinateSpaceWidth(width);
+		/*canvas.setCoordinateSpaceHeight(height);
+		canvas.setCoordinateSpaceWidth(width);*/
 	}
 
 	

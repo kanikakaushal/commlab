@@ -2,14 +2,21 @@ package dei.vlab.communication.client.widgets.tools;
 
 import java.util.LinkedHashMap;
 
+import org.apache.cxf.tools.common.toolspec.ToolSpec;
+
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.WidgetCanvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
@@ -17,18 +24,25 @@ import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.LayoutSpacer;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tab.events.TabSelectedEvent;
 import com.smartgwt.client.widgets.tab.events.TabSelectedHandler;
+import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
-import dei.vlab.communication.client.contoller.CircuitMapperContoller;
 import dei.vlab.communication.client.contoller.ExpermentController;
 import dei.vlab.communication.client.event.EditorEvent;
+import dei.vlab.communication.client.handler.AddCircuitHander;
 import dei.vlab.communication.client.handler.EditorEventHandler;
 
 public class Editor extends TabSet implements EditorEventHandler {
 	public HLayout mainPanel;
+	public CircuitPalette circuitPalette;
+
+	public void setCircuitPalette(CircuitPalette circuitPalette) {
+		this.circuitPalette = circuitPalette;
+	}
 
 	public Editor() {
 
@@ -104,10 +118,22 @@ public class Editor extends TabSet implements EditorEventHandler {
 		tab.setID(name);
 		tab.setIcon("icons/16/workspace.png", 16);
 		tab.setWidth(80);
-		mainPanel.addChild(createExpermantPanel(mainPanel.getWidth(),mainPanel.getHeight()));
-		tab.setPane(mainPanel);
+		Canvas tabPanel = new Canvas();
+		tabPanel.setWidth100();
+	    tabPanel.setHeight100();
+	    VerticalPanel drwLayout = new VerticalPanel();
+		ExpermentPanel expermentPanel = createExpermantPanel();
+		Widget w = expermentPanel.asWidget();
+		w.getElement().getStyle().setMargin(10, Unit.PX);
+		w.getElement().getStyle().setProperty("border", "1px solid #cccccc");
+		drwLayout.add(w);
+		tabPanel.addChild(drwLayout);
+		tab.setPane(tabPanel);
 		this.addTab(tab);
 		this.selectTab(name);
+		expermentPanel.draw();
+		expermentPanel.registerConroller();
+
 	}
 
 	public void createTab(String name, String icon) {
@@ -139,27 +165,60 @@ public class Editor extends TabSet implements EditorEventHandler {
 
 	}
 
-	private VerticalPanel createExpermantPanel(int width,int height) {
-		HorizontalPanel expermentLayout = new HorizontalPanel();
-		VerticalPanel mainPanel = new VerticalPanel();
+	private ExpermentPanel createExpermantPanel() {
+		
 		ExpermentController currentController = null;
-		expermentLayout = new HorizontalPanel();
-		mainPanel.add(expermentLayout);
-		ExpermentPanel expermentPanel = new ExpermentPanel();
+		
 		if (currentController != null) {
 			currentController.clearDiagram();
 		} else {
-			// Create the drawing zone
-			currentController = new ExpermentController(width, height);
+			currentController = new ExpermentController(400,200);
 		}
-		// currentController.showImage(image);
-		expermentPanel.setDiagramController(currentController);
-		Widget w = expermentPanel.asWidget();
-		w.getElement().getStyle().setMargin(10, Unit.PX);
-		w.getElement().getStyle().setProperty("border", "1px solid #cccccc");
-		expermentLayout.insert(w, 0);
-		mainPanel.setVisible(true);
-		return mainPanel;
+		ExpermentPanel expermentPanel = new ExpermentPanel(currentController);
+		AddCircuitHander circuitHander = new AddCircuitHander(expermentPanel);
+		circuitPalette.setAddCircuitHander(circuitHander);
+		return expermentPanel;
+		
+		
+	/*	SimplePanel expermentLayout = new SimplePanel();
+		expermentLayout.setHeight("100%");
+		expermentLayout.setWidth("100%");
+		expermentLayout.setVisible(true);
+		
+		
+		
+		
+	expermentLayout.addAttachHandler(new AttachEvent.Handler() {
+
+			  public void onAttachOrDetach(AttachEvent event) {
+				  try{
+					    SimplePanel panel = (SimplePanel)event.getSource();
+					  	ExpermentController currentController = null;
+						
+						if (currentController != null) {
+							currentController.clearDiagram();
+						} else {
+							currentController = new ExpermentController(panel.getOffsetWidth(),panel.getOffsetHeight());
+						}
+						ExpermentPanel expermentPanel = new ExpermentPanel(currentController);
+						AddCircuitHander circuitHander = new AddCircuitHander(expermentPanel);
+						circuitPalette.setAddCircuitHander(circuitHander);
+						Widget w = expermentPanel.asWidget();
+						//w.getElement().getStyle().setMargin(10, Unit.PX);
+						//w.getElement().getStyle().setProperty("border", "1px solid #cccccc");
+						panel.setWidget(new WidgetCanvas(w));
+						
+						expermentPanel.draw();
+						expermentPanel.registerConroller();
+						}
+					catch (Exception e) {
+						SC.say(e.getLocalizedMessage());
+					}
+					
+			  }
+			});
+		return expermentLayout;*/
+		
 	}
 
 }

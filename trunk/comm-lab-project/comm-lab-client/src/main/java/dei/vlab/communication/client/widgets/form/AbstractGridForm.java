@@ -18,6 +18,8 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 
+import dei.vlab.communication.client.widgets.tools.CircuitPanel;
+
 public abstract class AbstractGridForm extends HLayout {
 
 	final DynamicForm _form = new DynamicForm();
@@ -43,6 +45,21 @@ public abstract class AbstractGridForm extends HLayout {
                      }
 
                 });  
+                 
+                 ImgButton addNodeImg = new ImgButton();  
+                 addNodeImg.setShowDown(false);  
+                 addNodeImg.setShowRollOver(false);  
+                 addNodeImg.setAlign(Alignment.CENTER);  
+                 addNodeImg.setSrc("icons/16/node.png");  
+                 addNodeImg.setPrompt("Map Node Coordinates");  
+                 addNodeImg.setTitle("Map Node Coordinates");
+                 addNodeImg.setHeight(16);  
+                 addNodeImg.setWidth(16);  
+                 addNodeImg.addClickHandler(new ClickHandler() {  
+                     public void onClick(ClickEvent event) {  
+                    	 circuitPanel.showWin("images/resources/"+record.getAttribute("image"),record.getAttribute("name"),record.getAttribute("nodeData"));
+                     }  
+                 });  
 
                  ImgButton deleteImg = new ImgButton();  
                  deleteImg.setShowDown(false);  
@@ -60,6 +77,7 @@ public abstract class AbstractGridForm extends HLayout {
                  });  
 
                  recordCanvas.addMember(editImg);  
+                 recordCanvas.addMember(addNodeImg);  
                  recordCanvas.addMember(deleteImg);  
                  return recordCanvas;  
 	   
@@ -77,7 +95,7 @@ public abstract class AbstractGridForm extends HLayout {
 	private VLayout addlFormLayout = new VLayout();
 	private ToolStrip menuStripBar = new ToolStrip();
 	private CoorinateMapperForm coorinateMapperForm;
-
+    private CircuitPanel circuitPanel;
 	public AbstractGridForm(DataSource dataSource) {
 		super();
 		setMargin(15);
@@ -96,7 +114,8 @@ public abstract class AbstractGridForm extends HLayout {
 		menuStripBar.setWidth100();
 		_gridLayout.addMember(menuStripBar);
 		_gridLayout.addMember(_listGrid);
-		coorinateMapperForm= new CoorinateMapperForm();
+		coorinateMapperForm= new CoorinateMapperForm(_listGrid);
+		circuitPanel= new CircuitPanel();
 
 	/*	_form.setMargin(15);
 		_form.setDataSource(dataSource);
@@ -115,7 +134,7 @@ public abstract class AbstractGridForm extends HLayout {
 
 	public void fetchData() {
 		this._listGrid.fetchData();
-		this.fetchData();
+		//this.fetchData();
 	}
 
 	public void setUseAllDataSourceFields(boolean value) {
@@ -210,7 +229,11 @@ public abstract class AbstractGridForm extends HLayout {
 		}else{
 			coorinateMapperForm.setWindowTitle("New Circuit");
 		}
-		coorinateMapperForm.show();
+		coorinateMapperForm.load();
 	}  
+	
+	public void hideGridField(String fieldName){
+		_listGrid.hideField(fieldName);
+	}
 
 }

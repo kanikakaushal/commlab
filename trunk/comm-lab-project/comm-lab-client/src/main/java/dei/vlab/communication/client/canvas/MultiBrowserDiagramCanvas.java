@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.widgetideas.graphics.client.Color;
 import com.google.gwt.widgetideas.graphics.client.GWTCanvas;
+import com.smartgwt.client.widgets.Canvas;
 
 public class MultiBrowserDiagramCanvas implements DiagramCanvas{
 
@@ -24,7 +25,7 @@ public class MultiBrowserDiagramCanvas implements DiagramCanvas{
 		this.height = height;
 		this.canvas = new GWTCanvas();
 		setBackground();
-		getElement().getStyle().setPosition(Position.ABSOLUTE);
+		getElement().getStyle().setPosition(Position.RELATIVE);
 		getElement().getStyle().setWidth(width, Unit.PX);
 		getElement().getStyle().setHeight(height, Unit.PX);
 		canvas.setCoordSize(width, height);

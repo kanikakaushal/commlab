@@ -27,6 +27,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -65,6 +66,7 @@ import dei.vlab.communication.client.shapes.Point;
 import dei.vlab.communication.client.shapes.Shape;
 import dei.vlab.communication.client.utils.LinksClientBundle;
 import dei.vlab.communication.client.utils.MovablePoint;
+import dei.vlab.communication.client.widgets.link.CNode;
 
 /**
  * Controller which manage all the diagram logic
@@ -314,7 +316,7 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 
 		if (w instanceof HasContextMenu) {
 			w.addDomHandler(new MouseUpHandler() {
-				
+				@Override
 				public void onMouseUp(MouseUpEvent event) {
 					if (event.getNativeButton() == NativeEvent.BUTTON_RIGHT) {
 						showMenu((HasContextMenu) w, event.getClientX(), event.getClientY());
@@ -331,7 +333,6 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 
 		// If the is mouse is over the widget, clear the topCanvas
 		w.addDomHandler(new MouseOverHandler() {
-			
 			public void onMouseOver(com.google.gwt.event.dom.client.MouseOverEvent arg0) {
 				topCanvas.clear();
 				mousePoint.setLeft(-30);
@@ -349,6 +350,9 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 		return addWidget(w, mousePoint.getLeft(), mousePoint.getTop());
 	}
 
+	public FunctionShape addWidgetAtMousePoint(final Widget w,int l, int t) {
+			return addWidget(w, l,t);
+	}
 	/**
 	 * Add a widget as a decoration on a connection
 	 * 
@@ -927,6 +931,7 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 	}
 
 	public void addWidgetToBackgoundStatic(final Widget w, int left, int top){
+		
 	  widgetPanel.add(w,left,top);
 	}
 	
@@ -950,6 +955,8 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 			}, MouseUpEvent.getType());
 		}
 		  widgetPanel.add(w,left,top);
+	
+		 
 	}
 	public void registerWidget(final Widget w){
 		w.getElement().getStyle().setZIndex(3);
@@ -959,5 +966,8 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 		widgetShapeMap.put(w, shape);
 		functionsMap.put(w, new HashMap<Widget, Connection>());
 
+	}
+	public Widget getWidget(int index){
+		return widgetPanel.getWidget(index);
 	}
 }
