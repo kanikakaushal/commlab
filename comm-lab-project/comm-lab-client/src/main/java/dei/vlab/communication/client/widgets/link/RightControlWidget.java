@@ -15,7 +15,7 @@ import dei.vlab.communication.client.menu.ContextMenu;
 import dei.vlab.communication.client.save.IsDiagramSerializable;
 import dei.vlab.communication.client.shapes.FunctionShape;
 
-public class RightControlWidget extends AbsolutePanel implements IsDiagramSerializable {
+public class RightControlWidget extends AbsolutePanel {
 	public static String identifier = "dso";
 	String content;
 

@@ -6,6 +6,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
 
+import dei.vlab.communication.client.widgets.tools.CircuitPalette;
 import dei.vlab.communication.client.widgets.tools.Editor;
 
 public class PageBody extends VLayout {
@@ -51,9 +52,15 @@ public class PageBody extends VLayout {
 
 	public void addNavigationWidget(Widget widget) {
 		this.navigation.addMember(widget);
+		if(widget instanceof CircuitPalette){
+		this.tabSet.setCircuitPalette((CircuitPalette)widget);
+		}
 	}
 	public void addMenu(ToolStrip menu) {
 		this.addMember(menu,0);
 	}
+	
+	
+
 
 }

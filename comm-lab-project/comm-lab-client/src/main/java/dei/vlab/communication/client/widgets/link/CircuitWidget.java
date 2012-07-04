@@ -1,5 +1,8 @@
 package dei.vlab.communication.client.widgets.link;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.dom.client.HasAllTouchHandlers;
 import com.google.gwt.event.dom.client.TouchCancelEvent;
@@ -31,49 +34,18 @@ public class CircuitWidget extends Image implements HasContextMenu,HasAllTouchHa
 	DiagramController controller;
 	public ContextMenu contextMenu;
 	public PickupDragController dragController;
-	private CNode n1;
+	private List<CNode> cNodes=new ArrayList<CNode>();
+	private int nodeCount =0;
+	
 
-	protected void initMenu() {
-
-		contextMenu = new ContextMenu();
-		contextMenu.addItem(new MenuItem("Move", new Command() {
-			
-			public void execute() {
-				try{
-				enableDraggable();
-				contextMenu.hide();
-				}catch (Exception e) {
-					Window.alert(e.getLocalizedMessage());
-				}
-				}
-		}));
-		contextMenu.addItem(new MenuItem("Delete", new Command() {
-			
-			public void execute() {
-				removeMe();
-				contextMenu.hide();
-				}
-		}));
-		
-		
-	}
-
-	public void setRelativeCoordinates(int left,int top){
-		controller.addWidget(n1,left+this.getAbsoluteLeft(),top+this.getAbsoluteTop());
-		
-	}
 	public CircuitWidget(final DiagramController controller,PickupDragController dragController,String imageFile) {
 		super(imageFile);
 		this.controller = controller;
 		this.dragController=dragController;
-		 n1= new CNode(1);
 		controller.addWidgetToBackgound(this, 150,50);
-		setRelativeCoordinates(157,158);
 		
 		this.getElement().getStyle().setZIndex(2);
-		n1.getElement().getStyle().setZIndex(15);
-		
-		this.addMouseListener(new MouseListener() {
+		/*this.addMouseListener(new MouseListener() {
 			
 			
 			public void onMouseUp(Widget arg0, int arg1, int arg2) {
@@ -104,11 +76,35 @@ public class CircuitWidget extends Image implements HasContextMenu,HasAllTouchHa
 				setRelativeCoordinates(157, 158);
 				
 			}
-		});
+		});*/
 
 		initMenu();
 	}
 
+	protected void initMenu() {
+
+		contextMenu = new ContextMenu();
+		contextMenu.addItem(new MenuItem("Add", new Command() {
+			
+			public void execute() {
+				try{
+				enableDraggable();
+				contextMenu.hide();
+				}catch (Exception e) {
+					Window.alert(e.getLocalizedMessage());
+				}
+				}
+		}));
+		contextMenu.addItem(new MenuItem("Delete", new Command() {
+			
+			public void execute() {
+				removeMe();
+				contextMenu.hide();
+				}
+		}));
+		
+		
+	}
 
 	
 	public HandlerRegistration addTouchStartHandler(TouchStartHandler handler) {
@@ -163,6 +159,34 @@ public class CircuitWidget extends Image implements HasContextMenu,HasAllTouchHa
 		controller.deleteWidget(this);
 	}
 	
+	public void setNodeData(String data){
+		cNodes.clear();
+		 List<CNodeData> datas= praseData(data);
+		 for(CNodeData cNodeData :datas){
+			 	nodeCount++;
+			 	
+				CNode cNode =new CNode(nodeCount,cNodeData.getName(),cNodeData.getDescription());
+				cNodes.add(cNode);
+  				controller.addWidgetAtMousePoint(cNode,this.getAbsoluteLeft()+cNodeData.getLeft(),this.getAbsoluteTop()+cNodeData.getTop());
+				
+				dragController.makeDraggable(cNode);
+		 }
+		}
+	
+	private List<CNodeData> praseData(String datas) {
+		List<CNodeData> cNodeDatas = new ArrayList<CNodeData>();
+		datas=datas.replace("[", "");
+		datas=datas.replace("]", "");
+		datas=datas.replace("CNodeData", "");
+		datas=datas.trim();
+		for(String data :datas.split(",")){
+			cNodeDatas.add(CNodeData.create(data));
+		}
+		return cNodeDatas;
+		
+		
+	}
+
 
 	
 }
