@@ -6,6 +6,7 @@
 
     <http auto-config="true" lowercase-comparisons="false">
         <intercept-url pattern="/images/**" filters="none"/>
+        <intercept-url pattern="/resources/**" filters="none"/>
         <intercept-url pattern="/styles/**" filters="none"/>
         <intercept-url pattern="/scripts/**" filters="none"/>
         
