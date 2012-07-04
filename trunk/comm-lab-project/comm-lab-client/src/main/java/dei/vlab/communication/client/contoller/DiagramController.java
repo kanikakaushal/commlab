@@ -316,7 +316,6 @@ public class DiagramController implements HasNewFunctionHandlers,HasTieLinkHandl
 
 		if (w instanceof HasContextMenu) {
 			w.addDomHandler(new MouseUpHandler() {
-				@Override
 				public void onMouseUp(MouseUpEvent event) {
 					if (event.getNativeButton() == NativeEvent.BUTTON_RIGHT) {
 						showMenu((HasContextMenu) w, event.getClientX(), event.getClientY());
