@@ -46,17 +46,17 @@ public class CircuitWFController  implements ServletContextAware{
 	public @ResponseBody
 	List<CircuitData> listCircuits(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		System.out.println("circuit data frist >>>>>>>>>>>>>>"+circuitManager);
+		System.out.println("circuit data GET request");
 		 List<Circuit> circuits =circuitManager.getALL();
 		List<CircuitData> circuitDatas = new ArrayList<CircuitData>();
-                System.out.println("circuit datas Second >>>>>>>>>>>>>>"+circuits);
-		if(circuits!=null && !circuits.isEmpty()){
+ 		if(circuits!=null && !circuits.isEmpty()){
 			for(Circuit circuit:circuits){
 				circuitDatas.add(CircuitData.populate(circuit));
 			}
 		}
-                 System.out.println("circuit data Thred >>>>>>>>>>>>>>"+circuitDatas);
-		return circuitDatas;
+ 		System.out.println(">>>>>listCircuits>>>>" +circuitDatas);
+ 		
+ 		return circuitDatas;
 	}
 	
 	@RequestMapping(value="/circuit*", method=RequestMethod.PUT)
@@ -67,7 +67,7 @@ public class CircuitWFController  implements ServletContextAware{
 		if(circuit==null){
 		 circuit= new Circuit();
 		}
-		System.out.println(">>>>>>>>>>>>>>"+circuit);
+		System.out.println("saveUpdateCircuit>>>>>>>>>>>>>>"+circuit);
 		circuit.setName(circuitData.getName());
 		circuit.setType(circuitData.getType());
 		circuit.setConfigProperties("");
@@ -85,7 +85,7 @@ public class CircuitWFController  implements ServletContextAware{
 	@Transactional
 	public void processImageUploadRest(@RequestParam("image") MultipartFile image,@RequestParam("circuitName") String circuitName,
 				HttpServletRequest request,HttpServletResponse response) throws IOException, Exception {
-		     String uploadDir = getServletContext().getRealPath("/resources")+"/";
+		     String uploadDir = getServletContext().getRealPath("/images")+"/resources/";
 		     System.out.println(">>>>>>>>>>>>>>"+image+">>>>>>>"+circuitName);
         // the directory to upload to
         // Create the directory if it doesn't exist
@@ -119,6 +119,24 @@ public class CircuitWFController  implements ServletContextAware{
 		this.servletContext = servletContext;
 		
 	}
+	
+	@RequestMapping(value="/circuitXY*", method=RequestMethod.POST)
+	public @ResponseBody
+	String saveCircuitXY(String name,String data) throws Exception {
+		//int id = circuitData.getId()!=null ?circuitData.getId():0;
+		Circuit circuit =circuitManager.getCircuitByName(name);
+		if(circuit==null){
+		 circuit= new Circuit();
+		}
+		System.out.println("saveCircuitXY>>>>>>>>>>>>>>"+data);
+		
+		circuit.setNoceCordinate(data);
+		circuitManager.saveUpdate(circuit);
+		
+		System.out.println(">>>>>saveCircuitXY" +circuit);
+		return "success";
+	}
+
 
 
 }

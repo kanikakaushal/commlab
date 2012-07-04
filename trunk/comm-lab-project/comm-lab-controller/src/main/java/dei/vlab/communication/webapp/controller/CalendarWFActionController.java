@@ -7,14 +7,13 @@ package dei.vlab.communication.webapp.controller;
 
 
 
-import dei.vlab.communication.model.Calendarr;
-import dei.vlab.communication.service.CalendareManager;
-import dei.vlab.communication.webapp.data.CalendareData;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
+
+import dei.vlab.communication.model.Calendarr;
+import dei.vlab.communication.service.CalendareManager;
 
 /**
  *
@@ -68,7 +70,7 @@ public class CalendarWFActionController implements ServletContextAware{
     @RequestMapping(value="/calendar*", method=RequestMethod.PUT)
 	public @ResponseBody
 	String saveUpdateCalendar(@ModelAttribute CalendareData calendareData) throws Exception {
-		int id = calendareData.getId()!=null ?calendareData.getId():0;
+		int id = calendareData.getId()!=null ?calendareData.getId().intValue():0;
 		Calendarr calendarr =calendareManager.getCalenderDataById(new Long(id));
 		if(calendarr==null){
 		 calendarr= new Calendarr();

@@ -27,7 +27,8 @@ public class URLLogFilter  implements Filter {
 	 
 	        //Log the IP address and current timestamp.
 	        System.out.println("IP "+ipAddress + ", Time "
-	                            + new Date().toString() +" URL "+request.getRequestURL());
+	                            + new Date().toString() +" URL "+request.getRequestURL() 
+	                            +" Method "+request.getMethod());
 		arg2.doFilter(arg0, arg1);
 	}
 
